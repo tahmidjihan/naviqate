@@ -19,5 +19,17 @@
 }
 .primary-btn:hover {
   transition: all 0.1s ease-in-out;
-  scale: 0.98;
+  background: linear-gradient(180deg, #04d6dd, #2fb9d8);
+}
+.table {
+  @apply w-full;
+  border-collapse: collapse;
+  border: 2px solid black;
+  overflow: hidden;
+  th {
+    @apply border-2 border-black rounded-xl;
+  }
+  td {
+    @apply border-2 border-black sm:p-3 p-2;
+  }
 }
