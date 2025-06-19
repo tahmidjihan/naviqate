@@ -6,8 +6,7 @@
   font-family: poppins, sans-serif;
 }
 .primary-btn {
-  @apply btn;
-  width: full;
+  @apply btn max-w-xs sm:max-w-sm text-sm sm:text-base;
   padding: 5px 100px;
   font-weight: 700;
   font-size: 20px;

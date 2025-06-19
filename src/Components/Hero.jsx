@@ -11,7 +11,7 @@ function Hero() {
       {/* <div className='hero-overlay'></div> */}
       <div className='text-start mx-auto w-full container'>
         <div className='text-white'>
-          <h1 className='mb-5 text-6xl font-extrabold'>
+          <h1 className='mb-5 text-4xl lg:text-6xl font-extrabold'>
             We Handle the Tech.
             <br /> You Handle the Business.
           </h1>
@@ -19,7 +19,7 @@ function Hero() {
             Naviqate builds fast, scalable websites and handles all the tech—so
             you can launch your business stress-free.”
           </p>
-          <button className='primary-btn'>Book an appointment</button>
+          <button className='primary-btn'>Get started</button>
         </div>
       </div>
     </div>
