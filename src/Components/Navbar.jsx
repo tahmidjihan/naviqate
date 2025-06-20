@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from './logo';
 
 function Navbar() {
   function Menu() {
@@ -54,7 +55,9 @@ function Navbar() {
                 <Menu />
               </ul>
             </div>
-            <a className='btn btn-ghost text-xl'>daisyUI</a>
+            <a className='btn btn-ghost text-xl'>
+              <Logo />
+            </a>
           </div>
           <div className='navbar-end text-black hidden lg:flex'>
             <ul className='menu menu-horizontal px-1'>
