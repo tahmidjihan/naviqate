@@ -3,9 +3,9 @@ import React from 'react';
 function Logo({ className }) {
   return (
     <img
-      src='./Assets/naviqate-logo.png'
+      src='./Assets/naviqate-icon-beside.png'
       alt='Naviqate'
-      className={`w-full max-h-14 rounded-xl ${className}`}
+      className={`rounded-3xl ${className} bg-white`}
     />
   );
 }
