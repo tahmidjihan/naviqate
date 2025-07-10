@@ -5,7 +5,7 @@ function Hero() {
   return (
     <>
       {/* <Logo className={'mx-auto w-[300px]'}></Logo> */}
-      <div className='p-20 flex flex-col justify-center items-center  min-h-[70rem] bg-white'>
+      <div className='p-20 flex flex-col justify-center relative items-center  min-h-[70rem] bg-white'>
         <img
           src='./Assets/hero-style-top.png'
           className='absolute top-0 right-0 max-w-[50%] h-auto z-0'
@@ -28,7 +28,7 @@ function Hero() {
         <div className='z-0 h-[25rem] my-20'>
           <img
             src='./Assets/hero-bottom.png'
-            className='absolute bottom-0 right-0 w-full rounded-t-[12rem]'
+            className='absolute bottom-0 right-0 w-full rounded-[12rem]'
             alt='screenshot style'
           />
         </div>
