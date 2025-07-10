@@ -3,7 +3,7 @@ import React from 'react';
 function WhyChoose() {
   return (
     <>
-      <div className='hero py-32 container px-10 mx-auto shadow-[0px_0px_20px] shadow-cyan-500/50'>
+      <div className='hero py-32 container px-10 mx-auto shadow-[00px_0px_30px] shadow-cyan-500/70 bg-white rounded-3xl'>
         <div className='hero-content flex-col lg:flex-row-reverse'>
           <div className='w-[600px] '>
             <img src='./Assets/why.png' className='object-cover h-[340px]' />

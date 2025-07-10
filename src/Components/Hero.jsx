@@ -8,13 +8,15 @@ function Hero() {
       <div className='p-20 flex flex-col justify-center relative items-center  min-h-[70rem] bg-white'>
         <img
           src='./Assets/hero-style-top.png'
-          className='absolute top-0 right-0 max-w-[50%] h-auto z-0'
+          className='absolute top-0 right-0 w-[50vw] h-auto z-0'
           alt='design object'
         />
-        <div className='z-100 text-center'>
+        <div className='z-100 text-center min-h-[90vh] flex flex-col justify-center items-center'>
           <div className=''>
-            <h1 className='text-6xl font-bold'>Your Business Dashboard,</h1>
-            <h1 className='text-5xl font-extrabold text-cyan uppercase'>
+            <h1 className='text-8xl font-extrabold'>
+              Your Business Dashboard,
+            </h1>
+            <h1 className='text-8xl font-extrabold text-cyan uppercase'>
               ON STEROIDS.
             </h1>
 
@@ -25,10 +27,10 @@ function Hero() {
             <button className='btn primary-btn'>Get Started</button>
           </div>
         </div>
-        <div className='z-0 h-[25rem] my-20'>
+        <div className='z-0 my-10 mt-60'>
           <img
             src='./Assets/hero-bottom.png'
-            className='absolute bottom-0 right-0 w-full rounded-[12rem]'
+            className='min-w-screen rounded-tr-[45rem]'
             alt='screenshot style'
           />
         </div>

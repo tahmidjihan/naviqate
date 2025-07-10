@@ -23,7 +23,7 @@ function Navbar() {
 
   return (
     <>
-      <div className='bg-white container max-w-[75rem] fixed z-[1000] rounded-full my-3 cyan-shadow left-1/2 transform -translate-x-1/2 top-0 shadow-[0px_0px_40px] justify-center'>
+      <div className='bg-white container max-w-[95%] min-h-[6vh] fixed z-[1000] rounded-full my-3 cyan-shadow left-1/2 transform -translate-x-1/2 top-0 shadow-[0px_0px_40px] justify-center'>
         <div className='navbar'>
           <div className='navbar-start'>
             <div className='dropdown'>
