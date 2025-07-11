@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import AboutUs from './Components/AboutUs';
 import WhyChoose from './Components/WhyChoose';
 import OurServices from './Components/OurServices';
+import Pricing from './Components/Pricing';
 
 function App() {
   // This will be a temporary component to make the mvp work
@@ -17,6 +18,7 @@ function App() {
         <AboutUs />
         <WhyChoose />
         <OurServices />
+        <Pricing />
         <Footer />
       </div>
     </>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function WhyChoose() {
+function Pricing() {
   // its fragile than my Ego in responsiveness
   // so be careful while editing this component
   // this component made forcefully responsive
@@ -8,22 +8,21 @@ function WhyChoose() {
   // but it works fine in all devices
   return (
     <>
-      <div className='hero py-32 container lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
-        <div className='flex flex-col lg:flex-row-reverse'>
-          <div className='md:w-[600px] w-screen'>
+      <div className='hero py-32 my-10 container max-h-screen lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
+        <div className='flex flex-col lg:flex-row-reverse items-center justify-between w-full lg:px-30'>
+          <div>
             <img
-              src='./Assets/why.png'
-              className='object-cover lg:h-[310px] h-[95%]'
+              src='./Assets/pricing-girl.png'
+              className='object-cover h-[540px]'
             />
           </div>
           <div className='md:max-w-[600px] max-w-[90%]'>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
-              Why Choose Us?
+              Pricing
             </h3>
             <h1 className='text-5xl font-bold'>
-              You don’t have to <span className='text-cyan'>SELL</span>
-              your <span className='text-cyan'>HOUSE</span> to get a{' '}
-              <span className='text-cyan'>BUSINESS</span>. running.
+              <span className='text-cyan'>EVERYTHING</span> You Need to Launch —
+              For the Price of 3<span className='text-cyan'> COFFEES</span>.
             </h1>
             <p className='py-6 max-w-md'>
               Naviqate gives you the tools big brands pay thousands for —
@@ -31,6 +30,7 @@ function WhyChoose() {
               to start. Because starting a business shouldn’t feel like betting
               your life savings on a landing page.
             </p>
+            <div className='btn primary-btn'>Start Now</div>
           </div>
         </div>
       </div>
@@ -38,4 +38,4 @@ function WhyChoose() {
   );
 }
 
-export default WhyChoose;
+export default Pricing;
