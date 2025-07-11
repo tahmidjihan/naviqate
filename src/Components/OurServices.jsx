@@ -67,7 +67,7 @@ function OurServices() {
               go. No devs, no setup hell, no Frankenstein toolstack. Just launch
               and start building your business.
             </p>
-            <div className='flex flex-col lg:flex-row gap-10 lg:gap-40 md:justify-between py-10'>
+            <div className='flex flex-col lg:flex-row gap-10 xl:gap-40 md:justify-between py-10'>
               {services.map((service, index) => (
                 <HostingCard
                   key={index}
