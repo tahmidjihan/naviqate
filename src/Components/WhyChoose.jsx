@@ -1,18 +1,26 @@
 import React from 'react';
 
 function WhyChoose() {
+  // its fragile than my Ego in responsiveness
+  // so be careful while editing this component
+  // this component made forcefully responsive
+  // so it might not be the best code
+  // but it works fine in all devices
   return (
     <>
-      <div className='hero py-32 container px-10 mx-auto shadow-[00px_0px_30px] shadow-cyan-500/70 bg-white rounded-3xl'>
-        <div className='hero-content flex-col lg:flex-row-reverse'>
-          <div className='w-[600px] '>
-            <img src='./Assets/why.png' className='object-cover h-[340px]' />
+      <div className='hero py-32 container lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
+        <div className='flex flex-col lg:flex-row-reverse'>
+          <div className='md:w-[600px] w-screen'>
+            <img
+              src='./Assets/why.png'
+              className='object-cover lg::h-[340px] h-[95%]'
+            />
           </div>
-          <div className='max-w-[600px]'>
+          <div className='md:max-w-[600px] max-w-[90%]'>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
-              Why Choose Naviqate?
+              Why Choose Us?
             </h3>
-            <h1 className='text-6xl font-bold'>
+            <h1 className='text-5xl font-bold'>
               You don’t have to <span className='text-cyan'>SELL</span>
               your <span className='text-cyan'>HOUSE</span> to get a{' '}
               <span className='text-cyan'>BUSINESS</span>. running.

@@ -5,7 +5,7 @@ function Hero() {
   return (
     <>
       {/* <Logo className={'mx-auto w-[300px]'}></Logo> */}
-      <div className='p-20 flex flex-col justify-center relative items-center  min-h-[70rem] bg-white'>
+      <div className='py-20 flex flex-col justify-center w-screen relative items-center  min-h-[70rem] bg-white'>
         <img
           src='./Assets/hero-style-top.png'
           className='absolute top-0 right-0 w-[50vw] h-auto z-0'
@@ -13,10 +13,10 @@ function Hero() {
         />
         <div className='z-100 text-center min-h-[90vh] flex flex-col justify-center items-center'>
           <div className=''>
-            <h1 className='text-8xl font-extrabold'>
+            <h1 className='text-5xl lg:text-8xl  font-extrabold'>
               Your Business Dashboard,
             </h1>
-            <h1 className='text-8xl font-extrabold text-cyan uppercase'>
+            <h1 className='text-5xl lg:text-8xl font-extrabold text-cyan uppercase'>
               ON STEROIDS.
             </h1>
 
@@ -30,7 +30,7 @@ function Hero() {
         <div className='z-0 my-10 mt-60'>
           <img
             src='./Assets/hero-bottom.png'
-            className='min-w-screen rounded-tr-[45rem]'
+            className='min-w-screen rounded-r-[40rem]'
             alt='screenshot style'
           />
         </div>

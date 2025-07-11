@@ -38,6 +38,13 @@
 .text-cyan {
   color: #00bbc1;
 }
+.bg-cyan {
+  background-color: #00bbc1;
+}
+.text-cyan {
+  color: #00bbc1;
+}
+
 p {
   @apply text-lg;
   color: #737373;
