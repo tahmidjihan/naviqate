@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './logo';
 import { FaBars } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 function Navbar() {
   function Menu() {
@@ -52,7 +53,9 @@ function Navbar() {
             </ul>
           </div>
           <div className='navbar-end text-black hidden lg:flex'>
-            <a className='btn primary-btn'>Get Started</a>
+            <Link to={'/SignUp'} className='btn primary-btn'>
+              Get Started
+            </Link>
           </div>
         </div>
       </div>

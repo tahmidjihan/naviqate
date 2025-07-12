@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router';
 
 function Destinations() {
   const modalRef = useRef(null);
@@ -65,13 +66,13 @@ function Destinations() {
               href='#'
               className='text-xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'
             >
-              <a href='#'>Home {'>'}</a>
+              <Link to='/'>Home {'>'}</Link>
             </h3>
             <h3
               href='#'
               className='text-xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'
             >
-              <a href='#'>Sign In {'>'}</a>
+              <Link to='/login'>Sign In {'>'}</Link>
             </h3>
             <h3
               href='#'

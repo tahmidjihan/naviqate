@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from './logo';
+import { Link } from 'react-router';
 
 function Hero() {
   return (
@@ -24,7 +25,9 @@ function Hero() {
               Naviqate gives you a free site and a powerful dashboard built for
               real business data. Export, track, and grow — no devs required.
             </p>
-            <button className='btn primary-btn'>Get Started</button>
+            <Link to='/SignUp' className='btn primary-btn'>
+              Get Started
+            </Link>
           </div>
         </div>
         <div className='z-0  xl:mt-32'>
