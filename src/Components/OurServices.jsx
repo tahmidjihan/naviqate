@@ -54,8 +54,8 @@ function OurServices() {
   return (
     <>
       <>
-        <div className='hero py-32  w-screen mx-auto '>
-          <div className='container 2xl:px-30 lg:px-10 md:px-10 flex-col lg:flex-row'>
+        <div className='hero  w-screen mx-auto '>
+          <div className='container 2xl:px-30 lg:px-10 md:px-10 flex-col lg:flex-row py-32'>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
               Our Services
             </h3>

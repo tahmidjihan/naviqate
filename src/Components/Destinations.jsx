@@ -48,15 +48,12 @@ function Destinations() {
   };
   return (
     <div className='hero py-32'>
-      <div className='hero-content flex-col lg:flex-row'>
+      <div className='hero-content flex-col lg:flex-row container px-10'>
         <div>
           <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
             Destinations.
           </h3>
-          <img
-            src='./Assets/Destinations.png'
-            className='rounded-lg max-w-[30vw]'
-          />
+          <img src='./Assets/Destinations.png' className='rounded-lg ' />
         </div>
 
         <div>

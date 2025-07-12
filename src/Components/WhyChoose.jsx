@@ -9,14 +9,14 @@ function WhyChoose() {
   return (
     <>
       <div className='hero py-32 container lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
-        <div className='flex flex-col lg:flex-row-reverse'>
-          <div className='md:w-[600px] w-screen'>
+        <div className='flex flex-col lg:flex-row-reverse items-center justify-between w-full xl:px-30'>
+          <div>
             <img
               src='./Assets/why.png'
-              className='object-cover lg:h-[310px] h-[95%]'
+              className='object-cover max-h-[340px] 2xl:h-[340px] rounded-lg'
             />
           </div>
-          <div className='md:max-w-[600px] max-w-[90%]'>
+          <div className='xl:max-w-[600px] lg:max-w-md max-w-[90%]'>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
               Why Choose Us?
             </h3>

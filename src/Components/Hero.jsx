@@ -8,12 +8,12 @@ function Hero() {
       <div className='py-20 flex flex-col justify-center w-screen relative items-center  min-h-[70rem] bg-white'>
         <img
           src='./Assets/hero-style-top.png'
-          className='absolute top-0 right-0 w-[50vw] h-auto z-0'
+          className='absolute top-0 right-0 w-[50vw] 2xl:w-[40vw] h-auto z-0'
           alt='design object'
         />
-        <div className='z-100 text-center min-h-[90vh] flex flex-col justify-center items-center'>
+        <div className='z-100 text-center md:mt-20 md:min-h-[50vh] 2xl:h-[40vh]  flex flex-col justify-center items-center'>
           <div className=''>
-            <h1 className='text-5xl lg:text-8xl  font-extrabold'>
+            <h1 className='text-6xl lg:text-8xl  font-extrabold'>
               Your Business Dashboard,
             </h1>
             <h1 className='text-5xl lg:text-8xl font-extrabold text-cyan uppercase'>
@@ -27,7 +27,7 @@ function Hero() {
             <button className='btn primary-btn'>Get Started</button>
           </div>
         </div>
-        <div className='z-0 my-10 mt-60'>
+        <div className='z-0  xl:mt-32'>
           <img
             src='./Assets/hero-bottom.png'
             className='min-w-screen rounded-r-[40rem]'

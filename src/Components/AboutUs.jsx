@@ -5,7 +5,10 @@ function AboutUs() {
     <>
       <div className='hero py-32'>
         <div className='hero-content flex-col lg:flex-row'>
-          <img src='./Assets/about.png' className='rounded-lg max-w-[40%]' />
+          <img
+            src='./Assets/about.png'
+            className='rounded-lg md:max-w-[40%] '
+          />
           <div>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
               About Us.

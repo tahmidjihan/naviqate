@@ -9,14 +9,14 @@ function Pricing() {
   return (
     <>
       <div className='hero py-32 my-10 container max-h-screen lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
-        <div className='flex flex-col lg:flex-row-reverse items-center justify-between w-full lg:px-30'>
+        <div className='flex flex-col lg:flex-row-reverse items-center justify-between w-full xl:px-30'>
           <div>
             <img
               src='./Assets/pricing-girl.png'
-              className='object-cover h-[540px]'
+              className='object-cover max-h-[540px] 2xl:h-[540px]'
             />
           </div>
-          <div className='md:max-w-[600px] max-w-[90%]'>
+          <div className='max-w-md xl:max-w-[600px]'>
             <h3 className='text-3xl text-cyan font-bold mb-7 w-full border-b-black border-b-2'>
               Pricing
             </h3>
