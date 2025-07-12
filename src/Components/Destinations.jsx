@@ -83,12 +83,7 @@ function Destinations() {
               <a href='#'>Dashboard {'>'}</a>
             </h3>
             <h3 className='text-xl text-cyan cursor-pointer font-bold mb-7 w-full border-b-black border-b-2'>
-              <span
-                onClick={showModal}
-                href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-              >
-                Special! {'>'}
-              </span>
+              <span onClick={showModal}>Special! {'>'}</span>
             </h3>
           </div>
           <button className='btn primary-btn'>Get started</button>
@@ -99,7 +94,7 @@ function Destinations() {
         <div className='modal-box px-4 py-8 text-center '>
           <h3 className='font-bold text-lg'>YOU’VE BEEN RICKED 🤡</h3>
           <div className='py-4'>
-            <div className='max-w-md'>
+            <div className='max-w-md mx-auto'>
               <div id='yt-container'>
                 <div ref={playerRef} className='max-w-md' />
               </div>
