@@ -28,11 +28,11 @@ function Dashboard() {
   ];
   return (
     <div className='bg-white min-h-screen w-full'>
-      <div className='p-4 md:p-10 overflow-x-hidden container'>
+      <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
         <h2 className='text-xl md:text-2xl'>Dashboard</h2>
         <div className='py-2'>
           <div className='flex flex-col lg:flex-row gap-5'>
-            <div className='w-full md:w-full lg:max-w-[700px] lg:w-7/12 xl:w-9/12 my-5'>
+            <div className='w-full md:w-full lg:max-w-[700px] lg:w-7/12 xl:w-8/12 xl:max-w-[1000px] my-5'>
               <div className='card rounded-3xl cyan-shadow bg-base-100'>
                 <div className='card-body'>
                   <h2 className='font-bold text-2xl md:text-4xl mx-2 md:mx-5 my-2 text-gray-600'>
