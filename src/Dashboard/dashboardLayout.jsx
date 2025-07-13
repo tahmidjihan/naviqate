@@ -17,7 +17,7 @@ function DashboardLayout() {
   return (
     <>
       <div className='flex'>
-        <div className='sm:sidebar fixed  z-10'>
+        <div className='sm:sidebar fixed lg:relative  z-10'>
           <div className='drawer lg:drawer-open'>
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content flex flex-col items-center justify-center'>

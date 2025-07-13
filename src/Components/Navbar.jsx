@@ -66,7 +66,7 @@ function Navbar() {
               <Menu />
             </ul>
           </div>
-          <div className='navbar-end text-black hidden lg:flex'>
+          <div className='navbar-end text-black hidden md:flex'>
             {user ? (
               <Link to={'/dashboard'} className='btn primary-btn'>
                 Dashboard
