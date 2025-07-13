@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
   TwitterAuthProvider,
   updateProfile,
 } from 'firebase/auth';
@@ -119,12 +120,20 @@ function AuthProvider({ children }) {
         // ..
       });
   }
+  function logout() {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+      setUser(undefined);
+      console.log('user signed out');
+    });
+  }
   const val = {
     // auth,
     loginWithGoogle,
     loginWithX,
     loginWithEmail,
     signUpWithEmail,
+    logout,
     user,
   };
 

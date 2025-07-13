@@ -2,8 +2,11 @@ import React from 'react';
 import Logo from './logo';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { useAuth } from '../AuthProvider';
+import Dashboard from '../Dashboard/Dashboard';
 
 function Navbar() {
+  const { user } = useAuth();
   function Menu() {
     return (
       <>
@@ -18,6 +21,17 @@ function Navbar() {
         </li>
         <li>
           <a href='#'>Contact</a>
+        </li>
+        <li className='flex md:hidden'>
+          {user ? (
+            <Link to={'/dashboard'} className='btn primary-btn'>
+              Dashboard
+            </Link>
+          ) : (
+            <Link to={'/SignIn'} className='btn primary-btn'>
+              Get Started
+            </Link>
+          )}
         </li>
       </>
     );
@@ -53,9 +67,15 @@ function Navbar() {
             </ul>
           </div>
           <div className='navbar-end text-black hidden lg:flex'>
-            <Link to={'/SignUp'} className='btn primary-btn'>
-              Get Started
-            </Link>
+            {user ? (
+              <Link to={'/dashboard'} className='btn primary-btn'>
+                Dashboard
+              </Link>
+            ) : (
+              <Link to={'/SignIn'} className='btn primary-btn'>
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </div>

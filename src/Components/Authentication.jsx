@@ -78,10 +78,10 @@ function Authentication({ signUp }) {
                   {signUp ? 'Sign Up' : 'Login'}
                 </button>
               </form>
-              <div className='w-full flex justify-between items-center mt-4'>
+              <div className='w-full flex justify-between items-center mt-4 flex-col md:flex-row gap-2'>
                 <button
                   onClick={loginWithX}
-                  className='btn rounded-full px-10 bg-black text-white border-black'
+                  className='btn rounded-full px-8 w-full md:w-4/9 bg-black text-white border-black'
                 >
                   <svg
                     aria-label='X logo'
@@ -99,7 +99,7 @@ function Authentication({ signUp }) {
                 </button>
                 <button
                   onClick={loginWithGoogle}
-                  className='btn rounded-full px-8 bg-white text-black border-[#e5e5e5]'
+                  className='btn rounded-full w-full md:w-4/9 bg-white text-black border-[#e5e5e5]'
                 >
                   <svg
                     aria-label='Google logo'

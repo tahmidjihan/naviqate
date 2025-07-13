@@ -8,7 +8,7 @@ function Pricing() {
   // but it works fine in all devices
   return (
     <>
-      <div className='hero py-32 my-10 container max-h-screen lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
+      <div className='hero py-32 my-10 container lg:px-10 overflow-x-hidden  w-[95%] mx-auto lg:shadow-[00px_0px_30px] lg:shadow-cyan-500/70 bg-white rounded-3xl'>
         <div className='flex flex-col lg:flex-row-reverse items-center justify-between w-full xl:px-30'>
           <div>
             <img
