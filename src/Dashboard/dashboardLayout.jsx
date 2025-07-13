@@ -17,7 +17,7 @@ function DashboardLayout() {
   return (
     <>
       <div className='flex'>
-        <div className='sm:sidebar fixed lg:relative  z-10'>
+        <div className='sm:sidebar fixed lg:relative z-10 lg:cyan-shadow'>
           <div className='drawer lg:drawer-open'>
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content flex flex-col items-center justify-center'>
@@ -35,7 +35,7 @@ function DashboardLayout() {
                 aria-label='close sidebar'
                 className='drawer-overlay'
               ></label>
-              <ul className='flex flex-col relative gap-3 sidebar-menu bg-white border-r-2 border-r-base-300 text-base-content min-h-full w-80 p-4'>
+              <ul className='flex flex-col max-w-[260px] relative gap-3 sidebar-menu bg-white border-r-2 border-r-base-300 text-base-content min-h-full w-80 p-4'>
                 {/* Sidebar content here */}
                 <li className='flex items-center justify-center w-full logo-part'>
                   <Logo className={'w-[250px]'} />

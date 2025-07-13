@@ -9,12 +9,14 @@
   font-weight: 800;
   font-size: 20px;
 }
-/* @media screen and (max-width: 400px) {
+@media screen and (min-width: 1020px), screen and (max-width: 1280px) {
   .sidebar-menu li {
     font-size: 16px;
     padding: 10px 15px;
+    max-width: 250px;
+    overflow-x: hidden;
   }
-} */
+}
 .active {
   background-color: #00bbc1;
   color: #fff !important;
