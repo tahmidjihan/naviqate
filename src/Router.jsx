@@ -5,6 +5,7 @@ import Authentication from './Components/Authentication';
 import DashboardLayout from './Dashboard/dashboardLayout';
 import Dashboard from './Dashboard/Dashboard';
 import Databases from './Dashboard/Databases';
+import WebManager from './Dashboard/WebManager';
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
+          <Route path='/dashboard/WebManager' element={<WebManager />} />
         </Route>
       </Routes>
     </>

@@ -61,7 +61,10 @@ function DashboardLayout() {
                   </span>
                   Databases
                 </li>
-                <li>
+                <li
+                  onClick={() => navigate('/dashboard/WebManager')}
+                  className={path === '/dashboard/WebManager' ? 'active' : ''}
+                >
                   <span>
                     <FaGlobe className='text-3xl' />
                   </span>

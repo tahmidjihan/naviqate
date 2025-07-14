@@ -51,8 +51,8 @@ function Databases() {
                         data={data}
                         dataKey='data'
                         nameKey='name'
-                        // cx='50%'
-                        // cy='50%'
+                        cx='50%'
+                        cy='50%'
                         outerRadius={100}
                         innerRadius={60}
                         label
