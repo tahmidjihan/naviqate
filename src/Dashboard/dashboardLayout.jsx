@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FaBars, FaPhoneAlt, FaUser } from 'react-icons/fa';
-import { Outlet, useNavigate } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import Logo from '../Components/logo';
 import './dashboard.css';
 import { FaGlobe, FaHouse, FaTable } from 'react-icons/fa6';
@@ -14,19 +14,22 @@ function DashboardLayout() {
       navigate('/login');
     }
   }, [user]);
+  const path = useLocation().pathname;
+  console.log(path);
   return (
     <>
       <div className='flex'>
-        <div className='sm:sidebar fixed lg:relative z-10 lg:cyan-shadow'>
+        <div className='sm:sidebar fixed lg:relative lg:w-[270px] z-10 lg:cyan-shadow'>
           <div className='drawer lg:drawer-open'>
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
             <div className='drawer-content flex flex-col items-center justify-center'>
               {/* Page content here */}
               <label
                 htmlFor='my-drawer-2'
-                className='btn btn-ghost drawer-button lg:hidden text-start w-full m-4 '
+                className='rounded-full bg-[#000]  drawer-button lg:hidden text-start m-4 '
               >
-                <FaBars className='leading-0 text-2xl text-black' />
+                <FaBars className='leading-0 text-2xl text-white text-center' />
+                Menu
               </label>
             </div>
             <div className='drawer-side'>
@@ -35,18 +38,24 @@ function DashboardLayout() {
                 aria-label='close sidebar'
                 className='drawer-overlay'
               ></label>
-              <ul className='flex flex-col max-w-[260px] relative gap-3 sidebar-menu bg-white border-r-2 border-r-base-300 text-base-content min-h-full w-80 p-4'>
+              <ul className='flex flex-col max-w-[260px] fixed gap-3 sidebar-menu bg-white border-r-2 border-r-base-300 text-base-content min-h-full w-80 p-4'>
                 {/* Sidebar content here */}
                 <li className='flex items-center justify-center w-full logo-part'>
                   <Logo className={'w-[250px]'} />
                 </li>
-                <li className='active'>
+                <li
+                  className={path === '/dashboard' ? 'active' : ''}
+                  onClick={() => navigate('/dashboard')}
+                >
                   <span>
                     <FaHouse className='text-3xl' />
                   </span>
                   Dashboard
                 </li>
-                <li>
+                <li
+                  className={path === '/dashboard/databases' ? 'active' : ''}
+                  onClick={() => navigate('/dashboard/databases')}
+                >
                   <span>
                     <FaTable className='text-3xl' />
                   </span>

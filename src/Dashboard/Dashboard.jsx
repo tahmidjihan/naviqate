@@ -83,7 +83,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <DashboardTable />
+          <DashboardTable count={3} lastUpdate={true} />
         </div>
       </div>
     </div>
