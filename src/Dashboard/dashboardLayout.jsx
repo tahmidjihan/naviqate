@@ -26,9 +26,9 @@ function DashboardLayout() {
               {/* Page content here */}
               <label
                 htmlFor='my-drawer-2'
-                className='rounded-full bg-[#000]  drawer-button lg:hidden text-start m-4 '
+                className='rounded-full bg-cyan-600 flex text-white gap-2 font-bold px-5 py-3 items-center drawer-button lg:hidden text-start m-4 '
               >
-                <FaBars className='leading-0 text-2xl text-white text-center' />
+                <FaBars className='leading-0 text-2xl text-center' />
                 Menu
               </label>
             </div>
@@ -76,7 +76,10 @@ function DashboardLayout() {
                   </span>
                   Account
                 </li>
-                <li>
+                <li
+                  onClick={() => navigate('/dashboard/contact')}
+                  className={path === '/dashboard/contact' ? 'active' : ''}
+                >
                   <span>
                     <FaPhoneAlt className='text-3xl' />
                   </span>

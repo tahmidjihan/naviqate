@@ -82,7 +82,7 @@ function WebManager() {
               <textarea
                 placeholder='Type your message here'
                 rows={4}
-                className='textarea textarea-lg w-full'
+                className='textarea textarea-lg w-full focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-0'
               ></textarea>
               <div className='flex justify-between'>
                 <input type='file' className='file-input file-input-sm my-2' />
