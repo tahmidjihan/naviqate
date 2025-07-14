@@ -6,6 +6,7 @@ import DashboardLayout from './Dashboard/dashboardLayout';
 import Dashboard from './Dashboard/Dashboard';
 import Databases from './Dashboard/Databases';
 import WebManager from './Dashboard/WebManager';
+import Contact from './Dashboard/Contact';
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
           <Route path='/dashboard/WebManager' element={<WebManager />} />
+          <Route path='/dashboard/contact' element={<Contact />} />
         </Route>
       </Routes>
     </>
