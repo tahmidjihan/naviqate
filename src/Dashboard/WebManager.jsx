@@ -23,25 +23,28 @@ function WebManager() {
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
         <h2 className='text-xl md:text-2xl'>Web Manager</h2>
-        <div className='py-2 grid grid-cols-1 lg:grid-cols-3 gap-5'>
+        <div className='py-2 flex flex-col lg:grid grid-cols-1 lg:grid-cols-3 gap-5'>
           <div className='col-span-1 lg:col-span-2'>
-            <div className='card w-full  rounded-3xl cyan-shadow bg-base-100 card-xl shadow-sm'>
-              <div className='card-body'>
+            <div className='card w-full rounded-3xl cyan-shadow bg-base-100 card-xl shadow-sm'>
+              <div className='card-body w-full'>
                 <h2 className='font-bold text-2xl md:text-4xl mx-2 md:mx-5 my-2 text-gray-600'>
                   Visits On Last Week
                 </h2>
-                <ResponsiveContainer width='100%' height={300}>
-                  <AreaChart data={data}>
-                    <Area dataKey='users' fill='#00bbc1' />
-                    <XAxis dataKey='name' />
-                    <YAxis />
-                    <Tooltip />
-                  </AreaChart>
-                </ResponsiveContainer>
+                <div className='w-full h-full'>
+                  <ResponsiveContainer width='100%' height={300}>
+                    <AreaChart data={data}>
+                      <Area dataKey='users' fill='#00bbc1' />
+                      <XAxis dataKey='name' />
+                      <YAxis />
+                      <Tooltip />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5'>
+
+          <div className='flex flex-col gap-5 col-span-1'>
             <div className='card rounded-3xl cyan-shadow bg-base-100 w-full min-w-[250px] xl:min-w-xs h-full'>
               <div className='card-body flex-row items-center align-middle'>
                 <div>

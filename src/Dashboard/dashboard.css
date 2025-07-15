@@ -32,3 +32,8 @@
 .logo-part:hover {
   background-color: transparent !important;
 }
+table tbody tr {
+  border: 7px solid white;
+  border-radius: 100%;
+  padding: 20px 40px;
+}

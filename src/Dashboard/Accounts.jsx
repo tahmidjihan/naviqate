@@ -114,48 +114,43 @@ function Accounts() {
                 </div>
                 <div>
                   <div className='overflow-x-auto'>
-                    <table className='dashboard-table w-full text-gray-500 text-xl'>
-                      <thead>
+                    <table className='min-w-full text-sm text-gray-700'>
+                      <thead className='bg-gray-100 text-left'>
                         <tr>
-                          <td colSpan={4} className='py-2'>
-                            <div
-                              className={`flex items-center justify-between px-6 py-3`}
-                            >
-                              <div className='w-1/12'>#</div>
-                              <div className='w-2/12'>Name</div>
-                              <div className='w-4/12'>Email</div>
-                              <div className='w-3/12'>Role</div>
-                            </div>
-                          </td>
+                          <th className='px-4 py-2 w-1/12'>#</th>
+                          <th className='px-4 py-2 w-2/12'>Name</th>
+                          <th className='px-4 py-2 w-4/12'>Email</th>
+                          <th className='px-4 py-2 w-3/12'>Role</th>
+                          <th className='w-2/12 hidden md:table-cell'></th>
                         </tr>
                       </thead>
                       <tbody>
                         {users
-                          .slice(0, count ? count : data.length)
-                          .map((item, i) => {
-                            return (
-                              <tr key={i}>
-                                <td colSpan={4} className='py-2'>
-                                  <div
-                                    className={`flex items-center justify-between px-6 py-2 bg-gray-100 rounded-full shadow-sm`}
-                                  >
-                                    <div className='w-1/12'>{i + 1}</div>
-                                    <div className='w-2/12'>{item.name}</div>
-                                    <div className='w-4/12'>{item.email}</div>
-                                    <div className='w-3/12'>{item.role}</div>
-                                  </div>
-                                </td>
-                              </tr>
-                            );
-                          })}
+                          .slice(0, count || users.length)
+                          .map((item, i) => (
+                            <tr
+                              key={i}
+                              className='bg-gray-100 rounded-full shadow-sm my-2'
+                            >
+                              <td className='px-4 py-3 rounded-l-full'>
+                                {i + 1}
+                              </td>
+                              <td className='px-4 py-3'>{item.name}</td>
+                              <td className='px-4 py-3'>{item.email}</td>
+                              <td className='px-4 py-3'>{item.role}</td>
+                              <td className='px-4 py-3 rounded-r-full text-right hidden md:table-cell'>
+                                <button className='text-cyan-600 font-semibold'>
+                                  Manage
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
 
                         <tr>
-                          <td colSpan={4} className='py-2'>
-                            <div
-                              className={`flex items-center btn justify-between px-6 py-2 bg-cyan text-center text-white font-bold text-xl rounded-full shadow-sm`}
-                            >
+                          <td colSpan={5} className='py-3'>
+                            <button className='w-full btn bg-cyan text-white text-center font-bold text-md rounded-full'>
                               Make A New One
-                            </div>
+                            </button>
                           </td>
                         </tr>
                       </tbody>

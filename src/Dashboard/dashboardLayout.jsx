@@ -3,7 +3,7 @@ import { FaBars, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import Logo from '../Components/logo';
 import './dashboard.css';
-import { FaGlobe, FaHouse, FaTable } from 'react-icons/fa6';
+import { FaGlobe, FaHouse, FaTable, FaDesktop } from 'react-icons/fa6';
 import { useAuth } from '../AuthProvider';
 
 function DashboardLayout() {
@@ -19,6 +19,13 @@ function DashboardLayout() {
   return (
     <>
       <div className='flex'>
+        {/* <div className='h-screen w-screen fixed z-[1000000] bg-cyan-600 lg:hidden'>
+          <h1 className='text-2xl font-bold text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+            <FaDesktop className='text-8xl mx-auto' />
+            <br />
+            Sorry, We are not temporarily available other than desktop devices.
+          </h1>
+        </div> */}
         <div className='sm:sidebar fixed lg:relative lg:w-[270px] z-10 lg:cyan-shadow'>
           <div className='drawer lg:drawer-open'>
             <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
