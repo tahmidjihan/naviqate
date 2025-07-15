@@ -70,11 +70,14 @@ function DashboardLayout() {
                   </span>
                   Web Manager
                 </li>
-                <li>
+                <li
+                  onClick={() => navigate('/dashboard/accounts')}
+                  className={path === '/dashboard/accounts' ? 'active' : ''}
+                >
                   <span>
                     <FaUser className='text-3xl' />
                   </span>
-                  Account
+                  Accounts
                 </li>
                 <li
                   onClick={() => navigate('/dashboard/contact')}
