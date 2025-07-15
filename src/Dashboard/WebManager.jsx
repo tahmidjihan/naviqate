@@ -44,31 +44,33 @@ function WebManager() {
           <div className='flex flex-col gap-5'>
             <div className='card rounded-3xl cyan-shadow bg-base-100 w-full min-w-[250px] xl:min-w-xs h-full'>
               <div className='card-body flex-row items-center align-middle'>
-                <div className='text-4xl lg:text-7xl text-cyan'>
-                  <FaCircleInfo />
-                </div>
                 <div>
-                  <h4 className='text-base md:text-lg font-bold text-gray-700'>
-                    Total visits
-                  </h4>
-                  <h2 className='text-3xl lg:text-4xl xl:text-6xl font-bold'>
-                    1742+
+                  <h4 className='text-2xl font-bold text-gray-700'>Status</h4>
+                  <h2 className='text-xl rounded-2xl font-bold flex items-center gap-1'>
+                    <span className='w-5 h-5 inline-block rounded-full bg-cyan-500'></span>{' '}
+                    Online
                   </h2>
+                  <div className='relative my-5 mx-5'>
+                    <input
+                      type='checkbox'
+                      defaultChecked
+                      className='toggle toggle-info scale-200 my-2'
+                    />
+                  </div>
                 </div>
               </div>
             </div>
             <div className='card rounded-3xl cyan-shadow bg-cyan w-full min-w-[250px] xl:min-w-xs h-full'>
               <div className='card-body flex-row items-center align-middle'>
-                <div className='text-4xl lg:text-7xl text-white'>
-                  <FaFileArrowDown />
-                </div>
                 <div>
-                  <h4 className='text-xl md:text-2xl xl:text-3xl font-bold text-white'>
-                    See Whats latest Update
+                  <h4 className='text-2xl xl:text-3xl font-bold text-white'>
+                    Update Logs
                   </h4>
-
+                  <span className='text-lg text-gray-200'>
+                    Check the updates you done on the website Here
+                  </span>
                   <div className='card-actions'>
-                    <button className='btn secondary-btn'>Jump</button>
+                    <button className='btn secondary-btn my-2'>Jump</button>
                   </div>
                 </div>
               </div>

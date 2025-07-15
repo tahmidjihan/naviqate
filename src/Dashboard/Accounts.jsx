@@ -13,7 +13,9 @@ export const users = [
   { id: 10, name: 'Shawn M.', email: 'shawn@mandes.com', role: 'Mod' },
   { id: 11, name: 'Eminem', email: 'rap@eminem.com', role: 'Mod' },
 ];
+
 function Accounts() {
+  const count = 5;
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
@@ -55,7 +57,7 @@ function Accounts() {
                     <b className='font-bold text-black'>Role:</b> Admin
                   </p>
                   <p>
-                    <b className='font-bold text-black'>Phone:</b> 2833649093
+                    <b className='font-bold text-black'>ID:</b> 2833649093
                   </p>
                 </div>
               </div>
@@ -103,8 +105,63 @@ function Accounts() {
               </div>
             </div>
             <div className='card rounded-3xl cyan-shadow bg-white w-full min-w-[250px] xl:min-w-xs h-full'>
-              <div className='card-body flex-row items-center align-middle'>
-                <h1 className='text-2xl md:text-4xl font-bold'>Sharing</h1>
+              <div className='card-body flex-col'>
+                <div className='flex items-center justify-between'>
+                  <h1 className='text-2xl md:text-4xl font-bold'>Sharing</h1>
+                  <span className='text-lg md:text-2xl font-bold text-cyan-500'>
+                    See all
+                  </span>
+                </div>
+                <div>
+                  <div className='overflow-x-auto'>
+                    <table className='dashboard-table w-full text-gray-500 text-xl'>
+                      <thead>
+                        <tr>
+                          <td colSpan={4} className='py-2'>
+                            <div
+                              className={`flex items-center justify-between px-6 py-3`}
+                            >
+                              <div className='w-1/12'>#</div>
+                              <div className='w-2/12'>Name</div>
+                              <div className='w-4/12'>Email</div>
+                              <div className='w-3/12'>Role</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {users
+                          .slice(0, count ? count : data.length)
+                          .map((item, i) => {
+                            return (
+                              <tr key={i}>
+                                <td colSpan={4} className='py-2'>
+                                  <div
+                                    className={`flex items-center justify-between px-6 py-2 bg-gray-100 rounded-full shadow-sm`}
+                                  >
+                                    <div className='w-1/12'>{i + 1}</div>
+                                    <div className='w-2/12'>{item.name}</div>
+                                    <div className='w-4/12'>{item.email}</div>
+                                    <div className='w-3/12'>{item.role}</div>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+
+                        <tr>
+                          <td colSpan={4} className='py-2'>
+                            <div
+                              className={`flex items-center btn justify-between px-6 py-2 bg-cyan text-center text-white font-bold text-xl rounded-full shadow-sm`}
+                            >
+                              Make A New One
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
