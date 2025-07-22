@@ -16,7 +16,7 @@ function DashboardLayout() {
     }
   }, [user]);
   const path = useLocation().pathname;
-  console.log(path);
+  // console.log(path);
   return (
     <>
       <div className='flex'>

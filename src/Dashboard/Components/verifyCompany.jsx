@@ -5,24 +5,35 @@ import { useAuth } from '../../AuthProvider';
 import Logo from '../../Components/logo';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 function VerifyCompany() {
   const [company, setCompany] = useState(false);
   const { user, getUserData } = useAuth();
   const navigate = useNavigate();
-  const checkCompany = async () => {
-    await user;
-    const email = await user.email;
-    const data = await getUserData(email);
-    if (data[0].company != null) {
-      setCompany(true);
-    } else {
-      setCompany(false);
-    }
-  };
+
+  const { data, refetch, isLoading } = useQuery({
+    queryKey: ['company'],
+    queryFn: () =>
+      axios
+        .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${user.email}`)
+        .then((res) => {
+          // console.log(res);
+          if (res.data[0].company != null) {
+            setCompany(true);
+
+            console.log('already a company!');
+          } else {
+            setCompany(false);
+            console.log('nice try diddy!');
+          }
+          return res.data[0];
+        }),
+  });
+
   useEffect(() => {
-    checkCompany();
-  }, []);
+    refetch();
+  }, [company]);
 
   function MakeCompany() {
     const {
@@ -40,6 +51,7 @@ function VerifyCompany() {
         .post(`${import.meta.env.VITE_BACKEND}/createCompany`, company)
         .then((res) => {
           if (res.status === 200) {
+            setCompany(true);
             navigate('/dashboard');
           }
         });
@@ -88,7 +100,7 @@ function VerifyCompany() {
                 name='email'
                 {...register('companyEmail', {
                   required: true,
-                  maxLength: 20,
+                  maxLength: 50,
                   pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 })}
               />

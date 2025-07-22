@@ -13,8 +13,11 @@ import {
 } from 'firebase/auth';
 import auth from './firebase.config';
 import axios from 'axios';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 const authContext = createContext(null);
 export const useAuth = () => React.useContext(authContext);
+
 function AuthProvider({ children }) {
   const [user, setUser] = useState(undefined);
   useEffect(() => {
@@ -25,7 +28,7 @@ function AuthProvider({ children }) {
           // https://firebase.google.com/docs/reference/js/firebase.User
           const uid = user.uid;
           setUser(user);
-          console.log(user);
+          // console.log(user);
           axios.post(
             `${import.meta.env.VITE_BACKEND}/createUser?name=${
               user.displayName
@@ -134,15 +137,20 @@ function AuthProvider({ children }) {
       console.log('user signed out');
     });
   }
-  // get userData
-  function getUserData(email) {
-    console.log(email);
-    axios
-      .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`)
-      .then((res) => {
-        console.log(res.data);
-      });
-  }
+
+  const client = useQueryClient();
+
+  const { data: getUserData, refetch: refetchUser } = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      await user;
+      const email = await user.email;
+      const data = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`
+      );
+      return data.data[0];
+    },
+  });
 
   // getUserData();
   //validate Password
@@ -161,7 +169,12 @@ function AuthProvider({ children }) {
     getUserData,
   };
 
-  return <authContext.Provider value={val}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider value={val}>
+      {/* <QueryClientProvider client={queryClient}>{children}</QueryClientProvider> */}
+      {children}
+    </authContext.Provider>
+  );
 }
 
 export default AuthProvider;
