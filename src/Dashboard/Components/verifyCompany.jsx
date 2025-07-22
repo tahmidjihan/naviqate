@@ -21,7 +21,7 @@ function VerifyCompany() {
           // console.log(res);
           if (res.data[0].company != null) {
             setCompany(true);
-
+            // console.log(res.data[0]);
             console.log('already a company!');
           } else {
             setCompany(false);
@@ -30,10 +30,20 @@ function VerifyCompany() {
           return res.data[0];
         }),
   });
-
+  // console.log(data.id);
   useEffect(() => {
     refetch();
   }, [company]);
+  function updateCompany(company) {
+    axios
+      .patch(
+        `http://localhost:3000/updateUserCompany/?id=${data.id}&company=${company.name}`
+      )
+      .then((res) => {
+        setCompany(true);
+        navigate('/dashboard');
+      });
+  }
 
   function MakeCompany() {
     const {
@@ -49,11 +59,10 @@ function VerifyCompany() {
       };
       axios
         .post(`${import.meta.env.VITE_BACKEND}/createCompany`, company)
-        .then((res) => {
-          if (res.status === 200) {
-            setCompany(true);
-            navigate('/dashboard');
-          }
+        .then(async (res) => {
+          await updateCompany(company);
+          setCompany(true);
+          navigate('/dashboard');
         });
     }
     return (
