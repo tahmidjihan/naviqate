@@ -5,6 +5,7 @@ import Logo from '../Components/logo';
 import './dashboard.css';
 import { FaGlobe, FaHouse, FaTable, FaDesktop } from 'react-icons/fa6';
 import { useAuth } from '../AuthProvider';
+import VerifyCompany from './Components/verifyCompany';
 
 function DashboardLayout() {
   const { user, logout } = useAuth();
@@ -19,6 +20,7 @@ function DashboardLayout() {
   return (
     <>
       <div className='flex'>
+        <VerifyCompany />
         {/* <div className='h-screen w-screen fixed z-[1000000] bg-cyan-600 lg:hidden'>
           <h1 className='text-2xl font-bold text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             <FaDesktop className='text-8xl mx-auto' />

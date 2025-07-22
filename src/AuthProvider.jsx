@@ -9,8 +9,10 @@ import {
   signOut,
   TwitterAuthProvider,
   updateProfile,
+  validatePassword,
 } from 'firebase/auth';
 import auth from './firebase.config';
+import axios from 'axios';
 const authContext = createContext(null);
 export const useAuth = () => React.useContext(authContext);
 function AuthProvider({ children }) {
@@ -24,6 +26,11 @@ function AuthProvider({ children }) {
           const uid = user.uid;
           setUser(user);
           console.log(user);
+          axios.post(
+            `${import.meta.env.VITE_BACKEND}/createUser?name=${
+              user.displayName
+            }&email=${user.email}&token=${user.accessToken}`
+          );
           // ...
         } else {
           setUser(null);
@@ -127,6 +134,10 @@ function AuthProvider({ children }) {
       console.log('user signed out');
     });
   }
+  //validate Password
+  function validatePass(password) {
+    const status = validatePassword(getAuth(), password);
+  }
   const val = {
     // auth,
     loginWithGoogle,
@@ -135,6 +146,7 @@ function AuthProvider({ children }) {
     signUpWithEmail,
     logout,
     user,
+    validatePass,
   };
 
   return <authContext.Provider value={val}>{children}</authContext.Provider>;
