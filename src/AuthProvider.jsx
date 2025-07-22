@@ -134,6 +134,17 @@ function AuthProvider({ children }) {
       console.log('user signed out');
     });
   }
+  // get userData
+  function getUserData(email) {
+    console.log(email);
+    axios
+      .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`)
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
+
+  // getUserData();
   //validate Password
   function validatePass(password) {
     const status = validatePassword(getAuth(), password);
@@ -147,6 +158,7 @@ function AuthProvider({ children }) {
     logout,
     user,
     validatePass,
+    getUserData,
   };
 
   return <authContext.Provider value={val}>{children}</authContext.Provider>;

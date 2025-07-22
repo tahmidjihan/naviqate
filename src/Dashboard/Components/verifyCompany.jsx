@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaDesktop } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../../AuthProvider';
@@ -8,7 +8,22 @@ import axios from 'axios';
 
 function VerifyCompany() {
   const [company, setCompany] = useState(false);
-  const { user } = useAuth();
+  const { user, getUserData } = useAuth();
+  const navigate = useNavigate();
+  const checkCompany = async () => {
+    await user;
+    const email = await user.email;
+    const data = await getUserData(email);
+    if (data[0].company != null) {
+      setCompany(true);
+    } else {
+      setCompany(false);
+    }
+  };
+  useEffect(() => {
+    checkCompany();
+  }, []);
+
   function MakeCompany() {
     const {
       register,
