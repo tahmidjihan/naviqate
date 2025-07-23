@@ -22,10 +22,10 @@ function VerifyCompany() {
           if (res.data[0].company_id != null) {
             setCompany(true);
             // console.log(res.data[0]);
-            console.log('already a company!');
+            // console.log('already a company!');
           } else {
             setCompany(false);
-            console.log('nice try diddy!');
+            // console.log('nice try diddy!');
           }
           return res.data[0];
         }),
