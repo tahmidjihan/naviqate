@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from '../../AuthProvider';
 
 export const data = [
   {
@@ -45,7 +46,21 @@ export const data = [
   },
 ];
 
-function DashboardTable({ count, lastUpdate, addNew }) {
+function DashboardTable({ count, lastUpdate }) {
+  const { getUserData } = useAuth();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // const name = e.target.name.value;
+    // const company = userData.company;
+    // const createdBy = userData.id;
+    console.log(getUserData);
+    const data = {
+      name: e.target.name.value,
+      company: getUserData.company,
+      createdBy: getUserData.id,
+    };
+    console.log(data);
+  };
   return (
     <div className='card w-full rounded-3xl bg-white card-xl cyan-shadow lg:h-full lg:min-w-1/2'>
       <div className='card-body'>
@@ -101,20 +116,58 @@ function DashboardTable({ count, lastUpdate, addNew }) {
                       </td>
                     </tr>
                   ))}
-                {addNew && (
-                  <tr>
-                    <td colSpan={lastUpdate ? 7 : 6} className='py-3'>
-                      <div className='btn bg-cyan text-white text-center rounded-full w-full'>
-                        Make A New One
-                      </div>
-                    </td>
-                  </tr>
-                )}
+
+                <tr>
+                  <td colSpan={lastUpdate ? 7 : 6} className='py-3'>
+                    <button
+                      onClick={() =>
+                        document.getElementById('my_modal_3').showModal()
+                      }
+                      className='btn bg-cyan text-white text-center rounded-full w-full'
+                    >
+                      Make A New One
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      {/* <button
+        className='btn'
+        onClick={() => document.getElementById('my_modal_3').showModal()}
+      >
+        open modal
+      </button> */}
+      <dialog id='my_modal_3' className='modal'>
+        <div className='modal-box'>
+          <form method='dialog'>
+            {/* if there is a button in form, it will close the modal */}
+            <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
+              ✕
+            </button>
+          </form>
+          <h3 className='font-bold text-lg'>Make a Database!</h3>
+          {/* <p className='py-4'>Press ESC key or click on ✕ button to close</p> */}
+          <div className='my-5'>
+            <form onSubmit={handleSubmit} className='flex flex-col'>
+              {' '}
+              <input
+                type='text'
+                className='input focus:outline-none w-full focus:border-0 focus:ring-3 focus:ring-cyan-500'
+                placeholder='Type the database name'
+                name='name'
+                required
+              />
+              <button className='btn my-2 primary-btn w-full'>
+                Make Database
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }
