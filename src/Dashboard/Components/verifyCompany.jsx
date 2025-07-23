@@ -19,7 +19,7 @@ function VerifyCompany() {
         .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${user.email}`)
         .then((res) => {
           // console.log(res);
-          if (res.data[0].company != null) {
+          if (res.data[0].company_id != null) {
             setCompany(true);
             // console.log(res.data[0]);
             console.log('already a company!');
@@ -35,11 +35,10 @@ function VerifyCompany() {
     refetch();
   }, [company]);
   function updateCompany(company) {
+    console.log(company.id);
     axios
       .patch(
-        `${import.meta.env.VITE_BACKEND}/updateUserCompany/?id=${
-          data.id
-        }&company=${company.name}&companyId=${company.id}`
+        `http://localhost:3000/updateUserCompany/?id=${data.id}&company=${company.name}&company_id=${company.id}`
       )
       .then((res) => {
         setCompany(true);
@@ -62,9 +61,9 @@ function VerifyCompany() {
       axios
         .post(`${import.meta.env.VITE_BACKEND}/createCompany`, company)
         .then(async (res) => {
-          await updateCompany(company);
-          setCompany(true);
-          navigate('/dashboard');
+          await res.data;
+          // console.log(res.data);
+          updateCompany(res.data[0]);
         });
     }
     return (
