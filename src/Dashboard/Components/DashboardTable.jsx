@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../AuthProvider';
+import axios from 'axios';
 
 export const data = [
   {
@@ -48,18 +49,16 @@ export const data = [
 
 function DashboardTable({ count, lastUpdate }) {
   const { getUserData } = useAuth();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // const name = e.target.name.value;
-    // const company = userData.company;
-    // const createdBy = userData.id;
-    console.log(getUserData);
+    await getUserData;
     const data = {
       name: e.target.name.value,
-      company: getUserData.company,
-      createdBy: getUserData.id,
+      company_id: getUserData.company_id,
     };
-    console.log(data);
+    axios.post(`http://localhost:3000/createDatabases`, data).then((res) => {
+      console.log(res);
+    });
   };
   return (
     <div className='card w-full rounded-3xl bg-white card-xl cyan-shadow lg:h-full lg:min-w-1/2'>

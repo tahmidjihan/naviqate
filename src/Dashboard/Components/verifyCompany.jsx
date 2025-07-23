@@ -38,7 +38,9 @@ function VerifyCompany() {
     console.log(company.id);
     axios
       .patch(
-        `http://localhost:3000/updateUserCompany/?id=${data.id}&company=${company.name}&company_id=${company.id}`
+        `${import.meta.env.VITE_BACKEND}/updateUserCompany/?id=${
+          data.id
+        }&company=${company.name}&company_id=${company.id}`
       )
       .then((res) => {
         setCompany(true);
