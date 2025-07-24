@@ -76,6 +76,22 @@ function DashboardTable({ count, lastUpdate }) {
         console.log(res);
       });
   };
+  function AddData(data) {
+    return (
+      <dialog id='my_modal_2' className='modal'>
+        <div className='modal-box'>
+          <form method='dialog'>
+            {/* if there is a button in form, it will close the modal */}
+            <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
+              ✕
+            </button>
+          </form>
+          <h3 className='font-bold text-lg'>Add data !</h3>
+          <p className='py-4'>Press ESC key or click on ✕ button to close</p>
+        </div>
+      </dialog>
+    );
+  }
   return (
     <div className='card w-full rounded-3xl bg-white card-xl cyan-shadow lg:h-full lg:min-w-1/2'>
       <div className='card-body'>
@@ -126,7 +142,12 @@ function DashboardTable({ count, lastUpdate }) {
                           </span>
                         </td>
                         <td className='px-3 py-3 text-right hidden md:table-cell rounded-r-full'>
-                          <span className='text-cyan-600 font-semibold'>
+                          <span
+                            onClick={document
+                              .getElementById('my_modal_2')
+                              .showModal()}
+                            className='text-cyan-600 font-semibold'
+                          >
                             See more
                           </span>
                         </td>
@@ -184,6 +205,7 @@ function DashboardTable({ count, lastUpdate }) {
           </div>
         </div>
       </dialog>
+      <AddData></AddData>
     </div>
   );
 }
