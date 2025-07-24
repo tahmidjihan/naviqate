@@ -1,9 +1,10 @@
 import React from 'react';
-import DashboardTable, { data } from './Components/DashboardTable';
+import DashboardTable from './Components/DashboardTable';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { useQuery } from '@tanstack/react-query';
+import { useAuth } from '../AuthProvider';
 
 function Databases() {
-  const chartData = data;
   const COLORS = [
     '#FF6384',
     '#36A2EB',
@@ -31,7 +32,17 @@ function Databases() {
     '#7986CB',
     '#E0E0E0',
   ];
-
+  const { getUserData } = useAuth();
+  const { data: databases, refetch } = useQuery({
+    queryKey: ['databases'],
+    queryFn: () =>
+      axios
+        .get(`http://localhost:3000/getDatabases?id=${getUserData.company_id}`)
+        .then((res) => {
+          dataMn = res.data;
+          return res.data;
+        }),
+  });
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
@@ -48,7 +59,7 @@ function Databases() {
                   <ResponsiveContainer width={240} height={240}>
                     <PieChart>
                       <Pie
-                        data={data}
+                        data={databases}
                         dataKey='data'
                         nameKey='name'
                         cx='50%'
@@ -57,12 +68,13 @@ function Databases() {
                         innerRadius={60}
                         label
                       >
-                        {data.map((entry, index) => (
-                          <Cell
-                            key={`cell-${entry.name}`}
-                            fill={COLORS[index % COLORS.length]}
-                          />
-                        ))}
+                        {databases &&
+                          databases.map((entry, index) => (
+                            <Cell
+                              key={`cell-${entry.name}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
                       </Pie>
                       <Tooltip />
                     </PieChart>
