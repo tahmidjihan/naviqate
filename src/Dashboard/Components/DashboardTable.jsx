@@ -3,50 +3,6 @@ import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-// export const data = [
-//   {
-//     name: 'Sales',
-//     data: 1345,
-//     undone: 7,
-//     lastUpdated: '2025. 07.05',
-//     status: 'active',
-//   },
-//   {
-//     name: 'Queries',
-//     data: 2434,
-//     undone: 10,
-//     lastUpdated: '2025. 07.02',
-//     status: 'active',
-//   },
-//   {
-//     name: 'sales II',
-//     data: 2434,
-//     undone: 10,
-//     lastUpdated: '2025. 03.25',
-//     status: 'Paused',
-//   },
-//   {
-//     name: 'Newsletter',
-//     data: 1145,
-//     undone: 27,
-//     lastUpdated: '2025. 03.25',
-//     status: 'active',
-//   },
-//   {
-//     name: 'Requests',
-//     data: 200,
-//     undone: 0,
-//     lastUpdated: '2025. 03.25',
-//     status: 'Paused',
-//   },
-//   {
-//     name: 'test',
-//     data: 200,
-//     undone: 0,
-//     lastUpdated: '2025. 03.25',
-//     status: 'Paused',
-//   },
-// ];
 let dataMn = [];
 function DashboardTable({ count, lastUpdate }) {
   const { getUserData } = useAuth();
@@ -54,7 +10,11 @@ function DashboardTable({ count, lastUpdate }) {
     queryKey: ['databases'],
     queryFn: () =>
       axios
-        .get(`http://localhost:3000/getDatabases?id=${getUserData.company_id}`)
+        .get(
+          `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
+            getUserData.company_id
+          }`
+        )
         .then((res) => {
           return res.data;
         }),
@@ -143,10 +103,10 @@ function DashboardTable({ count, lastUpdate }) {
                         </td>
                         <td className='px-3 py-3 text-right hidden md:table-cell rounded-r-full'>
                           <span
-                            onClick={document
-                              .getElementById('my_modal_2')
-                              .showModal()}
-                            className='text-cyan-600 font-semibold'
+                            onClick={() =>
+                              document.getElementById('my_modal_2').showModal()
+                            }
+                            className='text-cyan-600 font-semibold cursor-pointer'
                           >
                             See more
                           </span>
@@ -178,6 +138,18 @@ function DashboardTable({ count, lastUpdate }) {
       >
         open modal
       </button> */}
+      <dialog id='my_modal_2' className='modal'>
+        <div className='modal-box'>
+          <form method='dialog'>
+            {/* if there is a button in form, it will close the modal */}
+            <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
+              ✕
+            </button>
+          </form>
+          <h3 className='font-bold text-lg'>Add data !</h3>
+          <p className='py-4'>Press ESC key or click on ✕ button to close</p>
+        </div>
+      </dialog>
       <dialog id='my_modal_3' className='modal'>
         <div className='modal-box'>
           <form method='dialog'>
@@ -205,7 +177,6 @@ function DashboardTable({ count, lastUpdate }) {
           </div>
         </div>
       </dialog>
-      <AddData></AddData>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardTable from './Components/DashboardTable';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
@@ -37,11 +37,18 @@ function Databases() {
     queryKey: ['databases'],
     queryFn: () =>
       axios
-        .get(`http://localhost:3000/getDatabases?id=${getUserData.company_id}`)
+        .get(
+          `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
+            getUserData.company_id
+          }`
+        )
         .then((res) => {
-          dataMn = res.data;
           return res.data;
         }),
+  });
+  console.log(databases);
+  useEffect(() => {
+    refetch();
   });
   return (
     <div className='bg-white min-h-screen w-full'>
@@ -56,29 +63,31 @@ function Databases() {
               <div className='card-body p-'>
                 <div className='card-title'>Activity</div>
                 <div className='w-full max-w-[200px]'>
-                  <ResponsiveContainer width={240} height={240}>
-                    <PieChart>
-                      <Pie
-                        data={databases}
-                        dataKey='data'
-                        nameKey='name'
-                        cx='50%'
-                        cy='50%'
-                        outerRadius={100}
-                        innerRadius={60}
-                        label
-                      >
-                        {databases &&
-                          databases.map((entry, index) => (
-                            <Cell
-                              key={`cell-${entry.name}`}
-                              fill={COLORS[index % COLORS.length]}
-                            />
-                          ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
+                  {databases && (
+                    <ResponsiveContainer width={240} height={240}>
+                      <PieChart>
+                        <Pie
+                          data={databases}
+                          dataKey='data'
+                          nameKey='name'
+                          cx='50%'
+                          cy='50%'
+                          outerRadius={100}
+                          innerRadius={60}
+                          label
+                        >
+                          {databases &&
+                            databases.map((entry, index) => (
+                              <Cell
+                                key={`cell-${entry.name}`}
+                                fill={COLORS[index % COLORS.length]}
+                              />
+                            ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  )}
                 </div>
               </div>
             </div>
