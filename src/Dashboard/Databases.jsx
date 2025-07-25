@@ -68,7 +68,7 @@ function Databases() {
                       <PieChart>
                         <Pie
                           data={databases}
-                          dataKey='data'
+                          dataKey='total_data'
                           nameKey='name'
                           cx='50%'
                           cy='50%'

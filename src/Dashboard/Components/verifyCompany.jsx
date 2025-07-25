@@ -40,7 +40,9 @@ function VerifyCompany() {
       .patch(
         `${import.meta.env.VITE_BACKEND}/updateUserCompany/?id=${
           data.id
-        }&company=${company.name}&company_id=${company.id}`
+        }&company=${company.name}&company_id=${company.id}&email=${
+          company.email
+        }`
       )
       .then((res) => {
         setCompany(true);

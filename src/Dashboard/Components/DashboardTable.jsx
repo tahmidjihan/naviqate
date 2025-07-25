@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 let dataMn = [];
 function DashboardTable({ count, lastUpdate }) {
   const { getUserData } = useAuth();
-  const { data: databases, refetch } = useQuery({
+  const { data: databases = [], refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
       axios
@@ -36,7 +36,7 @@ function DashboardTable({ count, lastUpdate }) {
         console.log(res);
       });
   };
-  function AddData(data) {
+  function getData(data) {
     return (
       <dialog id='my_modal_2' className='modal'>
         <div className='modal-box'>
@@ -75,7 +75,8 @@ function DashboardTable({ count, lastUpdate }) {
                 </tr>
               </thead>
               <tbody className='text-gray-400'>
-                {databases &&
+                {databases != [] &&
+                  Array.isArray(databases) &&
                   databases
                     .slice(0, count ? parseInt(count) : databases.length)
                     .map((item, i) => (
@@ -146,7 +147,7 @@ function DashboardTable({ count, lastUpdate }) {
               ✕
             </button>
           </form>
-          <h3 className='font-bold text-lg'>Add data !</h3>
+          <h3 className='font-bold text-lg'>Get data !</h3>
           <p className='py-4'>Press ESC key or click on ✕ button to close</p>
         </div>
       </dialog>
