@@ -13,7 +13,7 @@ function DashboardLayout() {
   const [isPending, setIsPending] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user == null) {
+    if (user == null && !isPending) {
       navigate('/login');
     } else if (user) {
       setIsPending(false);
