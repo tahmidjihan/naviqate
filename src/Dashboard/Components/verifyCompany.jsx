@@ -6,9 +6,11 @@ import Logo from '../../Components/logo';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import LoadingScreen from '../../Components/LoadingScreen';
 
 function VerifyCompany() {
   const [company, setCompany] = useState(false);
+  const [isPending, setIsPending] = useState(true);
   const { user, getUserData } = useAuth();
   const navigate = useNavigate();
 
@@ -18,13 +20,14 @@ function VerifyCompany() {
       axios
         .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${user.email}`)
         .then((res) => {
-          // console.log(res);
           if (res.data[0].company_id != null) {
             setCompany(true);
+            setIsPending(false);
             // console.log(res.data[0]);
             // console.log('already a company!');
           } else {
             setCompany(false);
+            setIsPending(false);
             // console.log('nice try diddy!');
           }
           return res.data[0];
@@ -35,7 +38,7 @@ function VerifyCompany() {
     refetch();
   }, [company]);
   function updateCompany(company) {
-    console.log(company.id);
+    // console.log(company.id);
     axios
       .patch(
         `${import.meta.env.VITE_BACKEND}/updateUserCompany/?id=${
@@ -46,6 +49,7 @@ function VerifyCompany() {
       )
       .then((res) => {
         setCompany(true);
+        setIsPending(false);
         navigate('/dashboard');
       });
   }
@@ -69,6 +73,9 @@ function VerifyCompany() {
           // console.log(res.data);
           updateCompany(res.data[0]);
         });
+    }
+    if (isPending) {
+      return <LoadingScreen />;
     }
     return (
       <div className='card align-middle mx-auto bg-base-100 rounded-3xl border-gray-300 border-2 max-w-sm sm:max-w-md sm:min-w-md shrink-0 shadow-2xl'>

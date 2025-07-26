@@ -3,7 +3,6 @@ import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-let dataMn = [];
 function DashboardTable({ count, lastUpdate }) {
   const { getUserData } = useAuth();
   const { data: databases = [], refetch } = useQuery({
@@ -132,13 +131,7 @@ function DashboardTable({ count, lastUpdate }) {
           </div>
         </div>
       </div>
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      {/* <button
-        className='btn'
-        onClick={() => document.getElementById('my_modal_3').showModal()}
-      >
-        open modal
-      </button> */}
+
       <dialog id='my_modal_2' className='modal'>
         <div className='modal-box'>
           <form method='dialog'>
@@ -181,5 +174,4 @@ function DashboardTable({ count, lastUpdate }) {
     </div>
   );
 }
-export const data = dataMn;
 export default DashboardTable;

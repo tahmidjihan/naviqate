@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBars, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import { Outlet, useLocation, useNavigate } from 'react-router';
 import Logo from '../Components/logo';
@@ -6,17 +6,24 @@ import './dashboard.css';
 import { FaGlobe, FaHouse, FaTable, FaDesktop } from 'react-icons/fa6';
 import { useAuth } from '../AuthProvider';
 import VerifyCompany from './Components/verifyCompany';
+import LoadingScreen from '../Components/LoadingScreen';
 
 function DashboardLayout() {
   const { user, logout } = useAuth();
+  const [isPending, setIsPending] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) {
+    if (user == null) {
       navigate('/login');
+    } else if (user) {
+      setIsPending(false);
     }
   }, [user]);
   const path = useLocation().pathname;
   // console.log(path);
+  if (isPending) {
+    return <LoadingScreen />;
+  }
   return (
     <>
       <div className='flex'>

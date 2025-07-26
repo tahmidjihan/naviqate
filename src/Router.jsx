@@ -8,6 +8,7 @@ import Databases from './Dashboard/Databases';
 import WebManager from './Dashboard/WebManager';
 import Contact from './Dashboard/Contact';
 import Accounts from './Dashboard/Accounts';
+import LoadingScreen from './Components/LoadingScreen';
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path='/' element={<App />} />
         <Route path='/SignUp' element={<Authentication signUp />} />
         <Route path='/Login' element={<Authentication />} />
+        <Route path='/loading' element={<LoadingScreen />} />
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
