@@ -1,12 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from './logo';
 import { Link, useNavigate } from 'react-router';
 import { useAuth } from '../AuthProvider';
+import LoadingScreen from './LoadingScreen';
 
 function Authentication({ signUp }) {
   const { loginWithGoogle, loginWithX, loginWithEmail, signUpWithEmail, user } =
     useAuth();
   const navigate = useNavigate();
+  const [pending, setPending] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setPending(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -26,6 +34,9 @@ function Authentication({ signUp }) {
     } else {
       loginWithEmail(email, password);
     }
+  }
+  if (pending) {
+    return <LoadingScreen />;
   }
   return (
     <div
