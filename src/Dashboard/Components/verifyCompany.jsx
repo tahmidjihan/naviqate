@@ -14,6 +14,13 @@ function VerifyCompany() {
   const { user, getUserData } = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user == null) {
+      console.log(user);
+      navigate('/login');
+    }
+  });
+
   const { data, refetch, isLoading } = useQuery({
     queryKey: ['company'],
     queryFn: () =>
@@ -75,6 +82,7 @@ function VerifyCompany() {
         });
     }
     if (isPending) {
+      // console.log('pending in verify company');
       return <LoadingScreen />;
     }
     return (

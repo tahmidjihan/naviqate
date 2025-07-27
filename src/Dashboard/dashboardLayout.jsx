@@ -13,7 +13,8 @@ function DashboardLayout() {
   const [isPending, setIsPending] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user == null && !isPending) {
+    if (user == null) {
+      setIsPending(false);
       navigate('/login');
     } else if (user) {
       setIsPending(false);
@@ -22,12 +23,14 @@ function DashboardLayout() {
   const path = useLocation().pathname;
   // console.log(path);
   if (isPending) {
+    // console.log('pending in dashboard');
     return <LoadingScreen />;
   }
+
   return (
     <>
+      <VerifyCompany />
       <div className='flex'>
-        <VerifyCompany />
         {/* <div className='h-screen w-screen fixed z-[1000000] bg-cyan-600 lg:hidden'>
           <h1 className='text-2xl font-bold text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             <FaDesktop className='text-8xl mx-auto' />

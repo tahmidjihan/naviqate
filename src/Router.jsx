@@ -9,11 +9,13 @@ import WebManager from './Dashboard/WebManager';
 import Contact from './Dashboard/Contact';
 import Accounts from './Dashboard/Accounts';
 import LoadingScreen from './Components/LoadingScreen';
+import NotFound from './Components/NotFound';
 
 function Router() {
   return (
     <>
       <Routes>
+        <Route path='*' element={<NotFound />} />
         <Route path='/' element={<App />} />
         <Route path='/SignUp' element={<Authentication signUp />} />
         <Route path='/Login' element={<Authentication />} />
