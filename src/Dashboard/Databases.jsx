@@ -46,7 +46,7 @@ function Databases() {
           return res.data;
         }),
   });
-  console.log(databases);
+  // console.log(databases);
   useEffect(() => {
     refetch();
   });
