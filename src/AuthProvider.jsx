@@ -19,7 +19,7 @@ const authContext = createContext(null);
 export const useAuth = () => React.useContext(authContext);
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     function unsubscribe() {
       onAuthStateChanged(auth, (user) => {
@@ -36,7 +36,7 @@ function AuthProvider({ children }) {
           );
           // ...
         } else {
-          setUser(null);
+          setUser('userNotFound');
           console.log('user signed out');
           // User is signed out
           // ...
@@ -133,7 +133,7 @@ function AuthProvider({ children }) {
   function logout() {
     signOut(auth).then(() => {
       // Sign-out successful.
-      setUser(undefined);
+      setUser(null);
       console.log('user signed out');
     });
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaRegFile } from 'react-icons/fa';
+import { useAuth } from '../AuthProvider';
 export const users = [
   { id: 1, name: 'Dua L.', email: 'me@dualipa.com', role: 'Admin' },
   { id: 2, name: 'Sia', email: 'me@siamusic.com', role: 'Admin' },
@@ -16,6 +17,8 @@ export const users = [
 
 function Accounts() {
   const count = 5;
+  const { user, getUserData } = useAuth();
+  // console.log(user, getUserData);
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
@@ -33,31 +36,32 @@ function Accounts() {
                     />
                   </div>
                   <div className='rounded-full max-w-[100px] max-h-[100px] overflow-hidden mx-4'>
-                    <img src='./../Assets/DuaLipa.png' className='' alt='' />
+                    <img src={user?.photoURL} className='' alt='' />
                   </div>
                 </div>
                 <div className='mx-4'>
                   <div className='flex flex-col my-3'>
                     <span className='font-bold mt-3 text-lg md:text-2xl text-black'>
-                      Not Naviqate
+                      {getUserData.company}
                     </span>
                     <span className='text-lg md:text-2xl text-gray-600'>
-                      Dua Lipa
+                      {getUserData.name}
                     </span>
                   </div>
                   <p>
                     <b className='font-bold text-black'>Company Email:</b>
-                    not@naviqate.com
+                    {getUserData.company_email}
                   </p>
                   <p>
                     <b className='font-bold text-black'>User Email:</b>{' '}
-                    me@dualipa.com
+                    {getUserData.email}
                   </p>
                   <p>
-                    <b className='font-bold text-black'>Role:</b> Admin
+                    <b className='font-bold text-black'>Role:</b>{' '}
+                    {getUserData.role ? getUserData.role : 'Admin'}
                   </p>
                   <p>
-                    <b className='font-bold text-black'>ID:</b> 2833649093
+                    <b className='font-bold text-black'>ID:</b> {getUserData.id}
                   </p>
                 </div>
               </div>
@@ -87,7 +91,7 @@ function Accounts() {
                       </button>
                     </div>
                   </div>
-                  <div class='divider lg:divider-horizontal mx-2'></div>
+                  <div className='divider lg:divider-horizontal mx-2'></div>
                   <div>
                     <span className='text-xl md:text-2xl font-bold text-yellow-400'>
                       Danger

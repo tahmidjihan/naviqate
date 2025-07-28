@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaBars, FaPhoneAlt, FaUser } from 'react-icons/fa';
-import { Outlet, useLocation, useNavigate } from 'react-router';
+import { Outlet, useLocation, useNavigate, Link } from 'react-router';
 import Logo from '../Components/logo';
 import './dashboard.css';
 import { FaGlobe, FaHouse, FaTable, FaDesktop } from 'react-icons/fa6';
@@ -13,9 +13,12 @@ function DashboardLayout() {
   const [isPending, setIsPending] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user == null) {
-      setIsPending(false);
-      navigate('/login');
+    if (user === 'userNotFound') {
+      setTimeout(() => {
+        setIsPending(false);
+        console.log('from dashboard');
+        navigate('/login');
+      }, 1000);
     } else if (user) {
       setIsPending(false);
     }
@@ -60,7 +63,9 @@ function DashboardLayout() {
               <ul className='flex flex-col max-w-[260px] fixed gap-3 sidebar-menu bg-white border-r-2 border-r-base-300 text-base-content min-h-full w-80 p-4'>
                 {/* Sidebar content here */}
                 <li className='flex items-center justify-center w-full logo-part'>
-                  <Logo className={'w-[250px]'} />
+                  <Link to={'/'}>
+                    <Logo />
+                  </Link>
                 </li>
                 <li
                   className={path === '/dashboard' ? 'active' : ''}

@@ -18,7 +18,7 @@ function Authentication({ signUp }) {
 
   useEffect(() => {
     if (user) {
-      navigate('/');
+      navigate('/dashboard');
     }
   }, [user]);
 

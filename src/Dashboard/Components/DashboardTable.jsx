@@ -34,6 +34,7 @@ function DashboardTable({ count, lastUpdate }) {
       .then((res) => {
         console.log(res);
       });
+    refetch();
   };
   function getData(data) {
     return (

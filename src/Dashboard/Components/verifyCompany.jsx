@@ -15,10 +15,13 @@ function VerifyCompany() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user == null) {
-      console.log(user);
-      navigate('/login');
-    }
+    setTimeout(() => {
+      if (user === 'userNotFound') {
+        console.log('from verify company');
+        setIsPending(false);
+        navigate('/login');
+      }
+    }, 1000);
   });
 
   const { data, refetch, isLoading } = useQuery({
