@@ -17,7 +17,7 @@ function Authentication({ signUp }) {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user && user !== 'userNotFound') {
       navigate('/dashboard');
     }
   }, [user]);

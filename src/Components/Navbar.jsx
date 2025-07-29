@@ -23,7 +23,7 @@ function Navbar() {
           <a href='#'>Contact</a>
         </li>
         <li className='flex md:hidden'>
-          {user ? (
+          {user !== 'userNotFound' ? (
             <Link to={'/dashboard'} className='btn primary-btn'>
               Dashboard
             </Link>

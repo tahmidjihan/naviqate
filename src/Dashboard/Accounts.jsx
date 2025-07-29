@@ -42,26 +42,27 @@ function Accounts() {
                 <div className='mx-4'>
                   <div className='flex flex-col my-3'>
                     <span className='font-bold mt-3 text-lg md:text-2xl text-black'>
-                      {getUserData.company}
+                      {getUserData?.company}
                     </span>
                     <span className='text-lg md:text-2xl text-gray-600'>
-                      {getUserData.name}
+                      {getUserData?.name}
                     </span>
                   </div>
                   <p>
                     <b className='font-bold text-black'>Company Email:</b>
-                    {getUserData.company_email}
+                    {getUserData?.company_email}
                   </p>
                   <p>
                     <b className='font-bold text-black'>User Email:</b>{' '}
-                    {getUserData.email}
+                    {getUserData?.email}
                   </p>
                   <p>
                     <b className='font-bold text-black'>Role:</b>{' '}
-                    {getUserData.role ? getUserData.role : 'Admin'}
+                    {getUserData?.role ? getUserData?.role : 'Admin'}
                   </p>
                   <p>
-                    <b className='font-bold text-black'>ID:</b> {getUserData.id}
+                    <b className='font-bold text-black'>ID:</b>{' '}
+                    {getUserData?.id}
                   </p>
                 </div>
               </div>

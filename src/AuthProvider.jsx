@@ -37,7 +37,7 @@ function AuthProvider({ children }) {
           // ...
         } else {
           setUser('userNotFound');
-          console.log('user signed out');
+          // console.log('user signed out');
           // User is signed out
           // ...
         }
@@ -55,7 +55,7 @@ function AuthProvider({ children }) {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
       })
       .catch((error) => {
@@ -77,7 +77,7 @@ function AuthProvider({ children }) {
         const credential = TwitterAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         setUser(user);
       })
       .catch((error) => {
@@ -98,7 +98,7 @@ function AuthProvider({ children }) {
         // Signed in
         const user = userCredential.user;
         setUser(user);
-        console.log(user);
+        // console.log(user);
         // ...
       })
       .catch((error) => {
@@ -119,7 +119,7 @@ function AuthProvider({ children }) {
           // Profile updated!
           // ...
           const user = auth.currentUser;
-          console.log(user);
+          // console.log(user);
           setUser(user);
         });
       })
@@ -134,20 +134,22 @@ function AuthProvider({ children }) {
     signOut(auth).then(() => {
       // Sign-out successful.
       setUser(null);
-      console.log('user signed out');
+      // console.log('user signed out');
     });
   }
 
   const client = useQueryClient();
 
   const { data: getUserData, refetch: refetchUser } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['userData'],
     queryFn: async () => {
       await user;
       const email = await user.email;
+      // console.log(email);
       const data = await axios.get(
         `${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`
       );
+      refetchUser();
       return data.data[0];
     },
   });

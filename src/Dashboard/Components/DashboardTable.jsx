@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import LoadingScreen from '../../Components/LoadingScreen';
 
 function DashboardTable({ count, lastUpdate }) {
+  const [loading, setLoading] = useState(true);
   const { getUserData } = useAuth();
   const { data: databases = [], refetch } = useQuery({
     queryKey: ['databases'],
@@ -36,6 +38,14 @@ function DashboardTable({ count, lastUpdate }) {
       });
     refetch();
   };
+  useEffect(() => {
+    if (databases) {
+      setLoading(false);
+    }
+  });
+  if (loading) {
+    return <LoadingScreen />;
+  }
   function getData(data) {
     return (
       <dialog id='my_modal_2' className='modal'>
