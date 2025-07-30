@@ -46,20 +46,31 @@ function DashboardTable({ count, lastUpdate }) {
   if (loading) {
     return <LoadingScreen />;
   }
-  function getData(data) {
+  function GetData({ id }) {
     return (
-      <dialog id='my_modal_2' className='modal'>
-        <div className='modal-box'>
-          <form method='dialog'>
-            {/* if there is a button in form, it will close the modal */}
-            <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
-              ✕
-            </button>
-          </form>
-          <h3 className='font-bold text-lg'>Add data !</h3>
-          <p className='py-4'>Press ESC key or click on ✕ button to close</p>
-        </div>
-      </dialog>
+      <>
+        <span
+          onClick={() =>
+            document.getElementById(`data_modal_${id}`).showModal()
+          }
+          className='text-cyan-600 font-semibold cursor-pointer'
+        >
+          See more
+        </span>
+        <dialog id={`data_modal_${id}`} className='modal text-start'>
+          <div className='modal-box'>
+            <form method='dialog'>
+              {/* if there is a button in form, it will close the modal */}
+              <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
+                ✕
+              </button>
+            </form>
+            <h3 className='font-bold text-lg'>Add data !</h3>
+            <p className='py-4'>This is the data of {id}</p>
+            <p className='py-4'>Press ESC key or click on ✕ button to close</p>
+          </div>
+        </dialog>
+      </>
     );
   }
   return (
@@ -91,13 +102,13 @@ function DashboardTable({ count, lastUpdate }) {
                     .slice(0, count ? parseInt(count) : databases.length)
                     .map((item, i) => (
                       <tr
-                        key={i}
+                        key={item.id}
                         className='bg-gray-100 rounded-xl shadow-sm my-2'
                       >
                         <td className='px-5 py-3 rounded-l-full'>{i + 1}</td>
                         <td className='px-5 py-3'>{item.name}</td>
-                        <td className='px-5 py-3'>{item.data}</td>
-                        <td className='px-5 py-3'>{item.undone}</td>
+                        <td className='px-5 py-3'>{item.total_data}</td>
+                        <td className='px-5 py-3'>{item.total_undone}</td>
                         {lastUpdate && (
                           <td className='px-5 py-3'>{item.lastUpdated}</td>
                         )}
@@ -113,14 +124,7 @@ function DashboardTable({ count, lastUpdate }) {
                           </span>
                         </td>
                         <td className='px-3 py-3 text-right hidden md:table-cell rounded-r-full'>
-                          <span
-                            onClick={() =>
-                              document.getElementById('my_modal_2').showModal()
-                            }
-                            className='text-cyan-600 font-semibold cursor-pointer'
-                          >
-                            See more
-                          </span>
+                          <GetData id={item?.id} />
                         </td>
                       </tr>
                     ))}
@@ -142,19 +146,6 @@ function DashboardTable({ count, lastUpdate }) {
           </div>
         </div>
       </div>
-
-      <dialog id='my_modal_2' className='modal'>
-        <div className='modal-box'>
-          <form method='dialog'>
-            {/* if there is a button in form, it will close the modal */}
-            <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
-              ✕
-            </button>
-          </form>
-          <h3 className='font-bold text-lg'>Get data !</h3>
-          <p className='py-4'>Press ESC key or click on ✕ button to close</p>
-        </div>
-      </dialog>
       <dialog id='my_modal_3' className='modal'>
         <div className='modal-box'>
           <form method='dialog'>
