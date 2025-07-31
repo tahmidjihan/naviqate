@@ -37,3 +37,9 @@ table tbody tr {
   border-radius: 100%;
   padding: 20px 40px;
 }
+.s-table table tbody tr,
+.s-table table thead th {
+  border: 7px solid rgba(44, 188, 255, 0.384);
+  border-radius: 100%;
+  padding: 10px 0px;
+}
