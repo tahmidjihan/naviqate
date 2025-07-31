@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaCircleInfo, FaFileArrowDown } from 'react-icons/fa6';
+import VerifyWebsite from './Components/VerifyWebsite';
 import {
   Area,
   AreaChart,
@@ -21,6 +22,7 @@ function WebManager() {
   ];
   return (
     <div className='bg-white min-h-screen w-full'>
+      <VerifyWebsite></VerifyWebsite>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
         <h2 className='text-xl md:text-2xl'>Web Manager</h2>
         <div className='py-2 flex flex-col lg:grid grid-cols-1 lg:grid-cols-3 gap-5'>
