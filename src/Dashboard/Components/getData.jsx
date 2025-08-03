@@ -59,7 +59,7 @@ function GetData({ id }) {
           <div className='overflow-x-auto s-table rounded-box border border-base-content/5 bg-base-100 mt-4'>
             {loading ? (
               <div className='text-center py-6'>Loading...</div>
-            ) : data.length > 0 ? (
+            ) : data.length > 0 || typeof data[0] === 'object' ? (
               <table className='table'>
                 <thead>
                   <tr>

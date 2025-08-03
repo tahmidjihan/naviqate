@@ -10,6 +10,7 @@ import Contact from './Dashboard/Contact';
 import Accounts from './Dashboard/Accounts';
 import LoadingScreen from './Components/LoadingScreen';
 import NotFound from './Components/NotFound';
+import MakeWebsite from './Dashboard/Components/MakeWebsite';
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
           <Route path='/dashboard/WebManager' element={<WebManager />} />
+          <Route path='/dashboard/createWebsite' element={<MakeWebsite />} />
           <Route path='/dashboard/accounts' element={<Accounts />} />
           <Route path='/dashboard/contact' element={<Contact />} />
         </Route>
