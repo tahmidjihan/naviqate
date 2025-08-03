@@ -21,11 +21,11 @@ function Router() {
         <Route path='/SignUp' element={<Authentication signUp />} />
         <Route path='/Login' element={<Authentication />} />
         <Route path='/loading' element={<LoadingScreen />} />
+        <Route path='/makeWebsite' element={<MakeWebsite />} />
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
           <Route path='/dashboard/WebManager' element={<WebManager />} />
-          <Route path='/dashboard/createWebsite' element={<MakeWebsite />} />
           <Route path='/dashboard/accounts' element={<Accounts />} />
           <Route path='/dashboard/contact' element={<Contact />} />
         </Route>

@@ -1,148 +1,358 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-function MakeWebsite() {
+const MakeWebsite = () => {
+  // const [primaryColor, setPrimaryColor] = useState('#06b6d4');
+  // const [secondaryColor, setSecondaryColor] = useState('#0891b2');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const primaryColors = [
+    '#06b6d4',
+    '#3b82f6',
+    '#8b5cf6',
+    '#ec4899',
+    '#ef4444',
+    '#f97316',
+  ];
+  const secondaryColors = [
+    '#0891b2',
+    '#1d4ed8',
+    '#7e22ce',
+    '#db2777',
+    '#dc2626',
+    '#ea580c',
+  ];
+
+  const onSubmit = (data) => {
+    // console.log({ ...data, primaryColor, secondaryColor });
+  };
+
+  const inputClass = (hasError) =>
+    `custom-input w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 ${
+      hasError ? 'border-red-500' : 'border-gray-300'
+    }`;
+
   return (
-    <section className='body-font relative bg-gray-900 text-gray-400'>
-      <div className='container mx-auto px-5 py-24'>
-        <div className='mb-12 flex w-full flex-col text-center'>
-          <h1 className='title-font mb-4 text-2xl font-medium text-white sm:text-3xl'>
-            Contact Us
+    <div className='bg-cyan-50 min-h-screen'>
+      <div className='container mx-auto px-4 py-12'>
+        <header className='text-center mb-12'>
+          <h1 className='text-4xl font-bold text-cyan-600 mb-4'>
+            Get Your Professional Website
           </h1>
-          <p className='mx-auto text-base leading-relaxed lg:w-2/3'>
-            Feel free to reach out to us! Whether you have a question, feedback,
-            or a collaboration proposal, we'd love to hear from you.
+          <p className='text-lg text-gray-600 max-w-2xl mx-auto'>
+            Fill out the form below to order your custom website. We'll get back
+            to you within 24 hours to discuss your project.
           </p>
-        </div>
-        <div className='mx-auto md:w-2/3 lg:w-1/2'>
-          <div className='-m-2 flex flex-wrap'>
-            <form action='https://fabform.io/f/{form-id}' method='post'>
-              <div className='w-1/2 p-2'>
-                <div className='relative'>
+        </header>
+
+        <div className='max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden'>
+          <div className='bg-cyan-500 py-4 px-6'>
+            <h2 className='text-xl font-semibold text-white'>
+              Website Order Form
+            </h2>
+          </div>
+
+          <form className='p-6 md:p-8' onSubmit={handleSubmit(onSubmit)}>
+            {/* Personal Info */}
+            <section className='mb-8'>
+              <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
+                Your Information
+              </h3>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Full Name
+                  </label>
                   <input
+                    {...register('fullName', {
+                      required: true,
+                      minLength: 3,
+                    })}
                     type='text'
-                    id='name'
-                    name='name'
-                    className='peer w-full rounded border border-gray-700 bg-gray-800 bg-opacity-40 py-1 px-3 text-base leading-8 text-gray-100 placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900'
-                    placeholder='Name'
+                    className={inputClass(errors.fullName)}
+                    placeholder='John Doe'
                   />
-                  <label
-                    htmlFor='name'
-                    className='absolute left-3 -top-6 bg-transparent text-sm leading-7 text-indigo-500 transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-900 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-indigo-500'
-                  >
-                    Name
-                  </label>
+                  {errors.fullName && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Full Name is required (min 3 chars)
+                    </p>
+                  )}
                 </div>
-              </div>
-              <div className='w-1/2 p-2'>
-                <div className='relative'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Email Address
+                  </label>
                   <input
+                    {...register('email', {
+                      required: true,
+                      pattern: /.+@.+\..+/,
+                    })}
                     type='email'
-                    id='email'
-                    name='email'
-                    className='peer w-full rounded border border-gray-700 bg-gray-800 bg-opacity-40 py-1 px-3 text-base leading-8 text-gray-100 placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900'
-                    placeholder='Email'
+                    className={inputClass(errors.email)}
+                    placeholder='john@example.com'
                   />
-                  <label
-                    htmlFor='email'
-                    className='absolute left-3 -top-6 bg-transparent text-sm leading-7 text-indigo-500 transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-900 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-indigo-500'
-                  >
-                    Email
+                  {errors.email && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Valid email is required
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Company Email
                   </label>
+                  <input
+                    {...register('companyEmail', {
+                      pattern: /.+@.+\..+/,
+                    })}
+                    type='email'
+                    className={inputClass(errors.companyEmail)}
+                    placeholder='info@yourbusiness.com'
+                  />
+                  {errors.companyEmail && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Enter a valid email
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Company Name
+                  </label>
+                  <input
+                    {...register('companyName', { maxLength: 50 })}
+                    type='text'
+                    className={inputClass(errors.companyName)}
+                    placeholder='Your Business'
+                  />
+                  {errors.companyName && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Max 50 characters allowed
+                    </p>
+                  )}
                 </div>
               </div>
-              <div className='mt-4 w-full p-2'>
-                <div className='relative'>
+            </section>
+
+            {/* Website Details */}
+            <section className='mb-8'>
+              <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
+                Website Details
+              </h3>
+              <div className='grid grid-cols-1 gap-6'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Website Type
+                  </label>
+                  <select
+                    {...register('websiteType', { required: true })}
+                    className={inputClass(errors.websiteType)}
+                    defaultValue=''
+                  >
+                    <option value='' disabled>
+                      Select website type
+                    </option>
+                    <option value='portfolio'>Portfolio Website</option>
+                    <option value='business'>Business Website</option>
+                    <option value='ecommerce'>E-commerce Store</option>
+                    <option value='blog'>Blog</option>
+                    <option value='custom'>Custom Web Application</option>
+                  </select>
+                  {errors.websiteType && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Website type is required
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-1'>
+                    Number of Pages
+                  </label>
+                  <select
+                    {...register('pages', { required: true })}
+                    className={inputClass(errors.pages)}
+                    defaultValue=''
+                  >
+                    <option value='' disabled>
+                      Select number of pages
+                    </option>
+                    {[...Array(7)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1} Page{i + 1 > 1 ? 's' : ''}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.pages && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Please select number of pages
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    Required Features
+                  </label>
                   <textarea
-                    id='message'
-                    name='message'
-                    className='peer h-32 w-full resize-none rounded border border-gray-700 bg-gray-800 bg-opacity-40 py-1 px-3 text-base leading-6 text-gray-100 placeholder-transparent outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900'
-                    placeholder='Message'
-                    defaultValue={''}
+                    {...register('features', { required: true, minLength: 10 })}
+                    rows={3}
+                    className={inputClass(errors.features)}
+                    placeholder='List all the features you need for your website...'
                   />
-                  <label
-                    htmlFor='message'
-                    className='absolute left-3 -top-6 bg-transparent text-sm leading-7 text-indigo-500 transition-all peer-placeholder-shown:left-3 peer-placeholder-shown:top-2 peer-placeholder-shown:bg-gray-900 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:left-3 peer-focus:-top-6 peer-focus:text-sm peer-focus:text-indigo-500'
-                  >
-                    Message
-                  </label>
+                  {errors.features && (
+                    <p className='text-red-500 text-xs mt-1'>
+                      Please list at least 10 characters
+                    </p>
+                  )}
                 </div>
               </div>
-              <div className='w-full p-2'>
-                <button className='mx-auto flex rounded border-0 bg-indigo-500 py-2 px-8 text-lg text-white hover:bg-indigo-600 focus:outline-none'>
-                  Send
-                </button>
+            </section>
+
+            {/* Color Preferences */}
+            <section className='mb-8'>
+              <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
+                Color Preferences
+              </h3>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    Primary Color
+                  </label>
+                  <div className='flex flex-wrap gap-2'>
+                    {primaryColors.map((color) => (
+                      <input
+                        key={color}
+                        type='radio'
+                        name='primaryColor'
+                        className={`appearance-none w-8 h-8 rounded-full cursor-pointer bg-[${color}]`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className='block text-sm font-medium text-gray-700 mb-2'>
+                    Secondary Color
+                  </label>
+                  <div className='flex flex-wrap gap-2'>
+                    {secondaryColors.map((color) => (
+                      <input
+                        key={color}
+                        type='radio'
+                        name='secondaryColor'
+                        className={`appearance-none w-8 h-8 rounded-full cursor-pointer1 bg-[${color}]`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
-              {/* footer */}
-              <div className='mt-8 w-full border-t border-gray-800 p-2 pt-8 text-center'>
-                <a
-                  href='https://veilmail.io/e/FkKh7o'
-                  className='font-medium text-blue-600 hover:underline'
-                >
-                  Or click here to reveal our protected email address
-                </a>
-                <p className='my-5 leading-normal'>
-                  49 Smith St. <br />
-                  Saint Cloud, MN 56301
+            </section>
+
+            {/* Additional Information */}
+            <section className='mb-8'>
+              <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
+                Additional Information
+              </h3>
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Project Description
+                </label>
+                <textarea
+                  {...register('description', {
+                    required: true,
+                    minLength: 10,
+                  })}
+                  rows={4}
+                  className={inputClass(errors.description)}
+                  placeholder='Describe your website requirements, target audience, and any specific features you need...'
+                />
+                {errors.description && (
+                  <p className='text-red-500 text-xs mt-1'>
+                    Minimum 10 characters required
+                  </p>
+                )}
+              </div>
+              <div className='mt-4'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Reference Websites (URLs)
+                </label>
+                <textarea
+                  {...register('references')}
+                  rows={2}
+                  className='custom-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500'
+                  placeholder='Enter URLs of websites you like for reference...'
+                />
+              </div>
+              <div className='mt-4'>
+                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                  Upload Files (Optional)
+                </label>
+                <input
+                  type='file'
+                  {...register('files')}
+                  className='file-input file-input-bordered file-input-cyan w-full'
+                  multiple
+                />
+                <p className='text-xs text-gray-500 mt-1'>
+                  You can upload design files, logos, or any other relevant
+                  documents.
                 </p>
-                <span className='inline-flex'>
-                  <a className='text-gray-500'>
-                    <svg
-                      fill='currentColor'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      className='h-5 w-5'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' />
-                    </svg>
-                  </a>
-                  <a className='ml-4 text-gray-500'>
-                    <svg
-                      fill='currentColor'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      className='h-5 w-5'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' />
-                    </svg>
-                  </a>
-                  <a className='ml-4 text-gray-500'>
-                    <svg
-                      fill='none'
-                      stroke='currentColor'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      className='h-5 w-5'
-                      viewBox='0 0 24 24'
-                    >
-                      <rect width={20} height={20} x={2} y={2} rx={5} ry={5} />
-                      <path d='M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01' />
-                    </svg>
-                  </a>
-                  <a className='ml-4 text-gray-500'>
-                    <svg
-                      fill='currentColor'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      strokeWidth={2}
-                      className='h-5 w-5'
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z' />
-                    </svg>
+              </div>
+            </section>
+
+            {/* Terms and Conditions */}
+            <div className='mb-6'>
+              <label className='flex items-center gap-2 text-sm'>
+                <input
+                  type='checkbox'
+                  {...register('termsAccepted', { required: true })}
+                  className='checkbox checkbox-sm'
+                />
+                <span>
+                  I agree to the{' '}
+                  <a href='#' className='text-cyan-600 underline'>
+                    Terms
+                  </a>{' '}
+                  and{' '}
+                  <a href='#' className='text-cyan-600 underline'>
+                    Privacy Policy
                   </a>
                 </span>
-              </div>
-            </form>
-          </div>
+              </label>
+              {errors.termsAccepted && (
+                <p className='text-red-500 text-xs mt-1'>
+                  You must accept the terms
+                </p>
+              )}
+            </div>
+
+            <div className='flex justify-center w-full'>
+              <button
+                type='submit'
+                className='btn w-full bg-cyan-500 hover:bg-cyan-600 text-white text-lg'
+              >
+                Submit Order
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-5 w-5 ml-2'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fillRule='evenodd'
+                    d='M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z'
+                    clipRule='evenodd'
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
 
 export default MakeWebsite;
