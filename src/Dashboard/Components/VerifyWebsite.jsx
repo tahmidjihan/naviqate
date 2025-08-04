@@ -38,6 +38,9 @@ function VerifyWebsite() {
             <Link to='/dashboard/contact' className='btn primary-btn'>
               Contact Page
             </Link>
+            <Link to='/makeWebsite' className='btn primary-btn'>
+              Make website
+            </Link>
           </div>
         </div>
       </div>

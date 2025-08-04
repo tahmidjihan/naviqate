@@ -77,9 +77,9 @@ const MakeWebsite = () => {
                     placeholder='John Doe'
                   />
                   {errors.fullName && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Full Name is required (min 3 chars)
-                    </p>
+                    </span>
                   )}
                 </div>
                 <div>
@@ -96,9 +96,9 @@ const MakeWebsite = () => {
                     placeholder='john@example.com'
                   />
                   {errors.email && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Valid email is required
-                    </p>
+                    </span>
                   )}
                 </div>
                 <div>
@@ -108,15 +108,16 @@ const MakeWebsite = () => {
                   <input
                     {...register('companyEmail', {
                       pattern: /.+@.+\..+/,
+                      required: true,
                     })}
                     type='email'
                     className={inputClass(errors.companyEmail)}
                     placeholder='info@yourbusiness.com'
                   />
                   {errors.companyEmail && (
-                    <p className='text-red-500 text-xs mt-1'>
-                      Enter a valid email
-                    </p>
+                    <span className='text-red-500 text-xs mt-1'>
+                      Valid email is required
+                    </span>
                   )}
                 </div>
                 <div>
@@ -124,15 +125,18 @@ const MakeWebsite = () => {
                     Company Name
                   </label>
                   <input
-                    {...register('companyName', { maxLength: 50 })}
+                    {...register('companyName', {
+                      maxLength: 50,
+                      required: true,
+                    })}
                     type='text'
                     className={inputClass(errors.companyName)}
                     placeholder='Your Business'
                   />
                   {errors.companyName && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Max 50 characters allowed
-                    </p>
+                    </span>
                   )}
                 </div>
               </div>
@@ -163,9 +167,9 @@ const MakeWebsite = () => {
                     <option value='custom'>Custom Web Application</option>
                   </select>
                   {errors.websiteType && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Website type is required
-                    </p>
+                    </span>
                   )}
                 </div>
                 <div>
@@ -187,9 +191,9 @@ const MakeWebsite = () => {
                     ))}
                   </select>
                   {errors.pages && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Please select number of pages
-                    </p>
+                    </span>
                   )}
                 </div>
                 <div>
@@ -203,9 +207,9 @@ const MakeWebsite = () => {
                     placeholder='List all the features you need for your website...'
                   />
                   {errors.features && (
-                    <p className='text-red-500 text-xs mt-1'>
+                    <span className='text-red-500 text-xs mt-1'>
                       Please list at least 10 characters
-                    </p>
+                    </span>
                   )}
                 </div>
               </div>
@@ -269,9 +273,9 @@ const MakeWebsite = () => {
                   placeholder='Describe your website requirements, target audience, and any specific features you need...'
                 />
                 {errors.description && (
-                  <p className='text-red-500 text-xs mt-1'>
+                  <span className='text-red-500 text-xs mt-1'>
                     Minimum 10 characters required
-                  </p>
+                  </span>
                 )}
               </div>
               <div className='mt-4'>
@@ -295,10 +299,10 @@ const MakeWebsite = () => {
                   className='file-input file-input-bordered file-input-cyan w-full'
                   multiple
                 />
-                <p className='text-xs text-gray-500 mt-1'>
+                <span className='text-xs text-gray-500 mt-1'>
                   You can upload design files, logos, or any other relevant
                   documents.
-                </p>
+                </span>
               </div>
             </section>
 
@@ -313,18 +317,14 @@ const MakeWebsite = () => {
                 <span>
                   I agree to the{' '}
                   <a href='#' className='text-cyan-600 underline'>
-                    Terms
-                  </a>{' '}
-                  and{' '}
-                  <a href='#' className='text-cyan-600 underline'>
-                    Privacy Policy
+                    Terms and Privacy Policy
                   </a>
                 </span>
               </label>
               {errors.termsAccepted && (
-                <p className='text-red-500 text-xs mt-1'>
+                <span className='text-red-500 text-xs mt-1'>
                   You must accept the terms
-                </p>
+                </span>
               )}
             </div>
 
