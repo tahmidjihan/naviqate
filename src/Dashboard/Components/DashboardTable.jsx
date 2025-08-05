@@ -24,7 +24,7 @@ function DashboardTable({ count, lastUpdate }) {
   useEffect(() => {
     // console.log(databases);
     refetch();
-  });
+  }, [databases]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     await getUserData;

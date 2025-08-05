@@ -49,7 +49,7 @@ function Databases() {
   // console.log(databases);
   useEffect(() => {
     refetch();
-  });
+  }, []);
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>

@@ -22,7 +22,7 @@ function VerifyWebsite() {
   });
   useEffect(() => {
     refetch();
-  });
+  }, [website]);
   return (
     <div className='w-screen bg-[rgba(0,0,0,0.5)] h-screen absolute z-[5] flex items-center justify-center'>
       <div className='card bg-white rounded-2xl shadow-lg cyan-shadow'>
