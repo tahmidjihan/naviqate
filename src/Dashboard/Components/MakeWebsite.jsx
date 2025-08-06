@@ -1,7 +1,9 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '../../AuthProvider';
 
 const MakeWebsite = () => {
+  const { user, getUserData } = useAuth();
   const {
     register,
     handleSubmit,
@@ -30,8 +32,18 @@ const MakeWebsite = () => {
   const selectedPrimary = watch('primaryColor');
   const selectedSecondary = watch('secondaryColor');
 
-  const onSubmit = (data) => {
-    console.log({ ...data });
+  const onSubmit = async (data) => {
+    await getUserData;
+    const newData = {
+      ...data,
+      company_id: getUserData.company_id,
+    };
+    // console.log(newData);
+    axios
+      .post(`${import.meta.env.VITE_BACKEND}/createWebsite`, newData)
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   const inputClass = (hasError) =>
