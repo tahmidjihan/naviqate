@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
+import axios from 'axios';
 
 function VerifyWebsite() {
   const [website, setWebsite] = useState(false);
@@ -17,12 +18,16 @@ function VerifyWebsite() {
         )
         .then((res) => {
           setWebsite(true);
+          console.log(res.data);
           return res.data;
         }),
   });
   useEffect(() => {
     refetch();
-  }, [website]);
+  }, [website, user, getUserData]);
+  if (website) {
+    return null;
+  }
   return (
     <div className='w-screen bg-[rgba(0,0,0,0.5)] h-screen absolute z-[5] flex items-center justify-center'>
       <div className='card bg-white rounded-2xl shadow-lg cyan-shadow'>
