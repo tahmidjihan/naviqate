@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const MakeWebsite = () => {
-  // const [primaryColor, setPrimaryColor] = useState('#06b6d4');
-  // const [secondaryColor, setSecondaryColor] = useState('#0891b2');
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const primaryColors = [
-    '#06b6d4',
-    '#3b82f6',
-    '#8b5cf6',
-    '#ec4899',
-    '#ef4444',
-    '#f97316',
-  ];
-  const secondaryColors = [
-    '#0891b2',
-    '#1d4ed8',
-    '#7e22ce',
-    '#db2777',
-    '#dc2626',
-    '#ea580c',
+    { value: '#06b6d4', label: 'Cyan' },
+    { value: '#3b82f6', label: 'Blue' },
+    { value: '#8b5cf6', label: 'Purple' },
+    { value: '#ec4899', label: 'Pink' },
+    { value: '#ef4444', label: 'Red' },
+    { value: '#f97316', label: 'Orange' },
   ];
 
+  const secondaryColors = [
+    { value: '#0891b2', label: 'Dark Cyan' },
+    { value: '#1d4ed8', label: 'Dark Blue' },
+    { value: '#7e22ce', label: 'Dark Purple' },
+    { value: '#db2777', label: 'Dark Pink' },
+    { value: '#dc2626', label: 'Dark Red' },
+    { value: '#ea580c', label: 'Dark Orange' },
+  ];
+
+  const selectedPrimary = watch('primaryColor');
+  const selectedSecondary = watch('secondaryColor');
+
   const onSubmit = (data) => {
-    // console.log({ ...data, primaryColor, secondaryColor });
+    console.log({ ...data });
   };
 
   const inputClass = (hasError) =>
@@ -57,91 +60,6 @@ const MakeWebsite = () => {
           </div>
 
           <form className='p-6 md:p-8' onSubmit={handleSubmit(onSubmit)}>
-            {/* Personal Info */}
-            <section className='mb-8'>
-              <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
-                Your Information
-              </h3>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Full Name
-                  </label>
-                  <input
-                    {...register('fullName', {
-                      required: true,
-                      minLength: 3,
-                    })}
-                    type='text'
-                    className={inputClass(errors.fullName)}
-                    placeholder='John Doe'
-                  />
-                  {errors.fullName && (
-                    <span className='text-red-500 text-xs mt-1'>
-                      Full Name is required (min 3 chars)
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Email Address
-                  </label>
-                  <input
-                    {...register('email', {
-                      required: true,
-                      pattern: /.+@.+\..+/,
-                    })}
-                    type='email'
-                    className={inputClass(errors.email)}
-                    placeholder='john@example.com'
-                  />
-                  {errors.email && (
-                    <span className='text-red-500 text-xs mt-1'>
-                      Valid email is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Company Email
-                  </label>
-                  <input
-                    {...register('companyEmail', {
-                      pattern: /.+@.+\..+/,
-                      required: true,
-                    })}
-                    type='email'
-                    className={inputClass(errors.companyEmail)}
-                    placeholder='info@yourbusiness.com'
-                  />
-                  {errors.companyEmail && (
-                    <span className='text-red-500 text-xs mt-1'>
-                      Valid email is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <label className='block text-sm font-medium text-gray-700 mb-1'>
-                    Company Name
-                  </label>
-                  <input
-                    {...register('companyName', {
-                      maxLength: 50,
-                      required: true,
-                    })}
-                    type='text'
-                    className={inputClass(errors.companyName)}
-                    placeholder='Your Business'
-                  />
-                  {errors.companyName && (
-                    <span className='text-red-500 text-xs mt-1'>
-                      Max 50 characters allowed
-                    </span>
-                  )}
-                </div>
-              </div>
-            </section>
-
             {/* Website Details */}
             <section className='mb-8'>
               <h3 className='text-lg font-medium text-cyan-600 mb-4 border-b border-cyan-100 pb-2'>
@@ -227,14 +145,30 @@ const MakeWebsite = () => {
                   </label>
                   <div className='flex flex-wrap gap-2'>
                     {primaryColors.map((color) => (
-                      <input
-                        key={color}
-                        type='radio'
-                        name='primaryColor'
-                        className={`appearance-none w-8 h-8 rounded-full cursor-pointer bg-[${color}]`}
-                      />
+                      <label key={color.value} className='relative'>
+                        <input
+                          type='radio'
+                          value={color.value}
+                          {...register('primaryColor', { required: true })}
+                          className='absolute opacity-0 w-0 h-0'
+                        />
+                        <div
+                          className={`w-8 h-8 rounded-full cursor-pointer ${
+                            selectedPrimary === color.value
+                              ? 'ring-2 ring-offset-2 ring-gray-400'
+                              : ''
+                          }`}
+                          style={{ backgroundColor: color.value }}
+                          title={color.label}
+                        />
+                      </label>
                     ))}
                   </div>
+                  {errors.primaryColor && (
+                    <span className='text-red-500 text-xs mt-1'>
+                      Please select a primary color
+                    </span>
+                  )}
                 </div>
                 <div>
                   <label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -242,14 +176,30 @@ const MakeWebsite = () => {
                   </label>
                   <div className='flex flex-wrap gap-2'>
                     {secondaryColors.map((color) => (
-                      <input
-                        key={color}
-                        type='radio'
-                        name='secondaryColor'
-                        className={`appearance-none w-8 h-8 rounded-full cursor-pointer1 bg-[${color}]`}
-                      />
+                      <label key={color.value} className='relative'>
+                        <input
+                          type='radio'
+                          value={color.value}
+                          {...register('secondaryColor', { required: true })}
+                          className='absolute opacity-0 w-0 h-0'
+                        />
+                        <div
+                          className={`w-8 h-8 rounded-full cursor-pointer ${
+                            selectedSecondary === color.value
+                              ? 'ring-2 ring-offset-2 ring-gray-400'
+                              : ''
+                          }`}
+                          style={{ backgroundColor: color.value }}
+                          title={color.label}
+                        />
+                      </label>
                     ))}
                   </div>
+                  {errors.secondaryColor && (
+                    <span className='text-red-500 text-xs mt-1'>
+                      Please select a secondary color
+                    </span>
+                  )}
                 </div>
               </div>
             </section>
@@ -326,6 +276,9 @@ const MakeWebsite = () => {
                   You must accept the terms
                 </span>
               )}
+              <span className='block text-xs text-gray-500 mt-1'>
+                * Additional information will be taken from our database.
+              </span>
             </div>
 
             <div className='flex justify-center w-full'>
