@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../AuthProvider';
+import axios from 'axios';
 
 const MakeWebsite = () => {
   const { user, getUserData } = useAuth();
@@ -29,18 +30,19 @@ const MakeWebsite = () => {
     { value: '#ea580c', label: 'Dark Orange' },
   ];
 
-  const selectedPrimary = watch('primaryColor');
-  const selectedSecondary = watch('secondaryColor');
+  const selectedPrimary = watch('primary_color');
+  const selectedSecondary = watch('secondary_color');
 
   const onSubmit = async (data) => {
     await getUserData;
+    // console.log(getUserData);
     const newData = {
       ...data,
       company_id: getUserData.company_id,
     };
-    // console.log(newData);
+    console.log(newData);
     axios
-      .post(`${import.meta.env.VITE_BACKEND}/createWebsite`, newData)
+      .post(`${import.meta.env.VITE_BACKEND}/orderWebsite`, newData)
       .then((res) => {
         console.log(res);
       });
@@ -83,7 +85,7 @@ const MakeWebsite = () => {
                     Website Type
                   </label>
                   <select
-                    {...register('websiteType', { required: true })}
+                    {...register('website_type', { required: true })}
                     className={inputClass(errors.websiteType)}
                     defaultValue=''
                   >
@@ -161,7 +163,7 @@ const MakeWebsite = () => {
                         <input
                           type='radio'
                           value={color.value}
-                          {...register('primaryColor', { required: true })}
+                          {...register('primary_color', { required: true })}
                           className='absolute opacity-0 w-0 h-0'
                         />
                         <div
@@ -176,7 +178,7 @@ const MakeWebsite = () => {
                       </label>
                     ))}
                   </div>
-                  {errors.primaryColor && (
+                  {errors.primary_color && (
                     <span className='text-red-500 text-xs mt-1'>
                       Please select a primary color
                     </span>
@@ -192,7 +194,7 @@ const MakeWebsite = () => {
                         <input
                           type='radio'
                           value={color.value}
-                          {...register('secondaryColor', { required: true })}
+                          {...register('secondary_color', { required: true })}
                           className='absolute opacity-0 w-0 h-0'
                         />
                         <div
@@ -207,7 +209,7 @@ const MakeWebsite = () => {
                       </label>
                     ))}
                   </div>
-                  {errors.secondaryColor && (
+                  {errors.secondary_color && (
                     <span className='text-red-500 text-xs mt-1'>
                       Please select a secondary color
                     </span>
@@ -273,7 +275,7 @@ const MakeWebsite = () => {
               <label className='flex items-center gap-2 text-sm'>
                 <input
                   type='checkbox'
-                  {...register('termsAccepted', { required: true })}
+                  {...register('terms_accepted', { required: true })}
                   className='checkbox checkbox-sm'
                 />
                 <span>
@@ -283,7 +285,7 @@ const MakeWebsite = () => {
                   </a>
                 </span>
               </label>
-              {errors.termsAccepted && (
+              {errors.terms_accepted && (
                 <span className='text-red-500 text-xs mt-1'>
                   You must accept the terms
                 </span>
