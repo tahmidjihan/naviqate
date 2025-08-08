@@ -27,21 +27,19 @@ function VerifyCompany() {
   const { data, refetch, isLoading } = useQuery({
     queryKey: ['company'],
     queryFn: () =>
-      axios
-        .get(`${import.meta.env.VITE_BACKEND}/getUserByEmail/${user.email}`)
-        .then((res) => {
-          if (res.data[0].company_id != null) {
-            setCompany(true);
-            setIsPending(false);
-            // console.log(res.data[0]);
-            // console.log('already a company!');
-          } else {
-            setCompany(false);
-            setIsPending(false);
-            // console.log('nice try diddy!');
-          }
-          return res.data[0];
-        }),
+      axios.get(`/getUserByEmail/${user.email}`).then((res) => {
+        if (res.data[0].company_id != null) {
+          setCompany(true);
+          setIsPending(false);
+          // console.log(res.data[0]);
+          // console.log('already a company!');
+        } else {
+          setCompany(false);
+          setIsPending(false);
+          // console.log('nice try diddy!');
+        }
+        return res.data[0];
+      }),
   });
   // console.log(data.id);
   useEffect(() => {
@@ -51,11 +49,7 @@ function VerifyCompany() {
     // console.log(company.id);
     axios
       .patch(
-        `${import.meta.env.VITE_BACKEND}/updateUserCompany/?id=${
-          data.id
-        }&company=${company.name}&company_id=${company.id}&email=${
-          company.email
-        }`
+        `/updateUserCompany/?id=${data.id}&company=${company.name}&company_id=${company.id}&email=${company.email}`
       )
       .then((res) => {
         setCompany(true);
@@ -76,13 +70,11 @@ function VerifyCompany() {
         email: data.companyEmail,
         created_by: user.displayName,
       };
-      axios
-        .post(`${import.meta.env.VITE_BACKEND}/createCompany`, company)
-        .then(async (res) => {
-          await res.data;
-          // console.log(res.data);
-          updateCompany(res.data[0]);
-        });
+      axios.post(`/createCompany`, company).then(async (res) => {
+        await res.data;
+        // console.log(res.data);
+        updateCompany(res.data[0]);
+      });
     }
     if (isPending) {
       // console.log('pending in verify company');

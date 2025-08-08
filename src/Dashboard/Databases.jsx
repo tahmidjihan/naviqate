@@ -36,15 +36,9 @@ function Databases() {
   const { data: databases, refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
-            userData.company_id
-          }`
-        )
-        .then((res) => {
-          return res.data;
-        }),
+      axios.get(`/getDatabases?id=${userData.company_id}`).then((res) => {
+        return res.data;
+      }),
   });
   // console.log(databases);
   useEffect(() => {

@@ -27,9 +27,7 @@ function AuthProvider({ children }) {
     enabled: !!user?.email, // only run if user has email
     queryFn: async () => {
       const email = user.email;
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`
-      );
+      const { data } = await axios.get(`/getUserByEmail/${email}`);
       return data[0];
     },
   });
@@ -41,14 +39,11 @@ function AuthProvider({ children }) {
 
         if (user.email) {
           await axios.post(
-            `${import.meta.env.VITE_BACKEND}/createUser?name=${
-              user.displayName
-            }&email=${user.email}`
+            `/createUser?name=${user.displayName}&email=${user.email}`
           );
         }
       } else {
         setUser('userNotFound');
-        localStorage.removeItem('token');
       }
     });
 
@@ -64,16 +59,13 @@ function AuthProvider({ children }) {
     ) {
       const createToken = async () => {
         try {
-          const res = await axios.post(
-            `${import.meta.env.VITE_BACKEND}/createToken`,
-            {
-              email: user.email,
-              name: user.displayName,
-              company_id: userData.company_id,
-              role: userData.role,
-              uid: user.uid,
-            }
-          );
+          const res = await axios.post(`/createToken`, {
+            email: user.email,
+            name: user.displayName,
+            company_id: userData.company_id,
+            role: userData.role,
+            uid: user.uid,
+          });
           localStorage.setItem('token', res.data);
         } catch (err) {
           console.error('Token creation failed:', err);

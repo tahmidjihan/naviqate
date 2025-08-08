@@ -41,11 +41,9 @@ const MakeWebsite = () => {
       company_id: userData.company_id,
     };
     console.log(newData);
-    axios
-      .post(`${import.meta.env.VITE_BACKEND}/orderWebsite`, newData)
-      .then((res) => {
-        console.log(res);
-      });
+    axios.post(`/orderWebsite`, newData).then((res) => {
+      console.log(res);
+    });
   };
 
   const inputClass = (hasError) =>

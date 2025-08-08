@@ -7,9 +7,7 @@ function GetData({ id }) {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['data', id], // Include id in queryKey for proper caching
     queryFn: async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/getData?db_id=${id}`
-      );
+      const response = await axios.get(`/getData?db_id=${id}`);
       return response.data;
     },
     enabled: false, // Disable automatic fetching

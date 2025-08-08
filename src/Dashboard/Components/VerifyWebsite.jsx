@@ -10,15 +10,11 @@ function VerifyWebsite() {
   const { data, refetch } = useQuery({
     queryKey: ['website'],
     queryFn: () =>
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND}/websiteData/${userData.company_id}`
-        )
-        .then((res) => {
-          setWebsite(true);
-          // console.log(res.data);
-          return res.data;
-        }),
+      axios.get(`/websiteData/${userData.company_id}`).then((res) => {
+        setWebsite(true);
+        // console.log(res.data);
+        return res.data;
+      }),
   });
   useEffect(() => {
     refetch();

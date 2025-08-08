@@ -11,15 +11,9 @@ function DashboardTable({ count, lastUpdate }) {
   const { data: databases = [], refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
-      axios
-        .get(
-          `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
-            userData.company_id
-          }`
-        )
-        .then((res) => {
-          return res.data;
-        }),
+      axios.get(`/getDatabases?id=${userData.company_id}`).then((res) => {
+        return res.data;
+      }),
   });
   useEffect(() => {
     // console.log(databases);
@@ -32,11 +26,9 @@ function DashboardTable({ count, lastUpdate }) {
       name: e.target.name.value,
       company_id: userData.company_id,
     };
-    axios
-      .post(`${import.meta.env.VITE_BACKEND}/createDatabases`, data)
-      .then((res) => {
-        console.log(res);
-      });
+    axios.post(`/createDatabases`, data).then((res) => {
+      console.log(res);
+    });
     refetch();
   };
   useEffect(() => {
