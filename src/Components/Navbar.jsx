@@ -7,6 +7,8 @@ import Dashboard from '../Dashboard/Dashboard';
 
 function Navbar() {
   const { user } = useAuth();
+
+  // console.log(user);
   function Menu() {
     return (
       <>
@@ -28,7 +30,7 @@ function Navbar() {
               Dashboard
             </Link>
           ) : (
-            <Link to={'/SignIn'} className='btn primary-btn'>
+            <Link to={'/Login'} className='btn primary-btn'>
               Get Started
             </Link>
           )}
@@ -67,12 +69,12 @@ function Navbar() {
             </ul>
           </div>
           <div className='navbar-end text-black hidden md:flex'>
-            {user ? (
+            {user !== 'userNotFound' ? (
               <Link to={'/dashboard'} className='btn primary-btn'>
                 Dashboard
               </Link>
             ) : (
-              <Link to={'/SignIn'} className='btn primary-btn'>
+              <Link to={'/Login'} className='btn primary-btn'>
                 Get Started
               </Link>
             )}

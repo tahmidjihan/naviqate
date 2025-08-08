@@ -13,7 +13,7 @@ function DashboardLayout() {
   const [isPending, setIsPending] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user === 'userNotFound') {
+    if (user == 'userNotFound') {
       setTimeout(() => {
         setIsPending(false);
         console.log('from dashboard');
@@ -21,6 +21,7 @@ function DashboardLayout() {
       }, 1000);
     } else if (user) {
       setIsPending(false);
+      localStorage.setItem('token', null);
     }
   }, [user]);
   const path = useLocation().pathname;
@@ -29,7 +30,10 @@ function DashboardLayout() {
     // console.log('pending in dashboard');
     return <LoadingScreen />;
   }
-
+  function handleLogout() {
+    logout();
+    navigate('/login');
+  }
   return (
     <>
       <VerifyCompany />
@@ -113,7 +117,7 @@ function DashboardLayout() {
                   Contact
                 </li>
                 <span
-                  onClick={logout}
+                  onClick={handleLogout}
                   className='text-cyan text-2xl mx-4 absolute bottom-4 font-bold hover:text-shadow-cyan-500/90 hover:text-shadow-[0px_0px_30px] cursor-pointer'
                 >
                   Logout

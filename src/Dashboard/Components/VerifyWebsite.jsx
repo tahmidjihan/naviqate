@@ -6,25 +6,23 @@ import axios from 'axios';
 
 function VerifyWebsite() {
   const [website, setWebsite] = useState(false);
-  const { user, getUserData } = useAuth();
+  const { user, userData } = useAuth();
   const { data, refetch } = useQuery({
     queryKey: ['website'],
     queryFn: () =>
       axios
         .get(
-          `${import.meta.env.VITE_BACKEND}/websiteData/${
-            getUserData.company_id
-          }`
+          `${import.meta.env.VITE_BACKEND}/websiteData/${userData.company_id}`
         )
         .then((res) => {
           setWebsite(true);
-          console.log(res.data);
+          // console.log(res.data);
           return res.data;
         }),
   });
   useEffect(() => {
     refetch();
-  }, [website, user, getUserData]);
+  }, [website, user, userData]);
   if (website) {
     return null;
   }

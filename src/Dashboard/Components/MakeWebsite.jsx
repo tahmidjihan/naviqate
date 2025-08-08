@@ -4,7 +4,7 @@ import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 
 const MakeWebsite = () => {
-  const { user, getUserData } = useAuth();
+  const { user, userData } = useAuth();
   const {
     register,
     handleSubmit,
@@ -34,11 +34,11 @@ const MakeWebsite = () => {
   const selectedSecondary = watch('secondary_color');
 
   const onSubmit = async (data) => {
-    await getUserData;
-    // console.log(getUserData);
+    await userData;
+    // console.log(userData);
     const newData = {
       ...data,
-      company_id: getUserData.company_id,
+      company_id: userData.company_id,
     };
     console.log(newData);
     axios

@@ -11,7 +11,7 @@ import LoadingScreen from '../../Components/LoadingScreen';
 function VerifyCompany() {
   const [company, setCompany] = useState(false);
   const [isPending, setIsPending] = useState(true);
-  const { user, getUserData } = useAuth();
+  const { user, userData } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

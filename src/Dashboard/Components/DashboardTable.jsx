@@ -7,14 +7,14 @@ import GetData from './getData';
 
 function DashboardTable({ count, lastUpdate }) {
   const [loading, setLoading] = useState(true);
-  const { getUserData } = useAuth();
+  const { userData } = useAuth();
   const { data: databases = [], refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
       axios
         .get(
           `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
-            getUserData.company_id
+            userData.company_id
           }`
         )
         .then((res) => {
@@ -27,10 +27,10 @@ function DashboardTable({ count, lastUpdate }) {
   }, [databases]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await getUserData;
+    await userData;
     const data = {
       name: e.target.name.value,
-      company_id: getUserData.company_id,
+      company_id: userData.company_id,
     };
     axios
       .post(`${import.meta.env.VITE_BACKEND}/createDatabases`, data)

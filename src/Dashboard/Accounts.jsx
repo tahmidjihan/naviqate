@@ -17,8 +17,8 @@ export const users = [
 
 function Accounts() {
   const count = 5;
-  const { user, getUserData } = useAuth();
-  // console.log(user, getUserData);
+  const { user, userData } = useAuth();
+  // console.log(user, userData);
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
@@ -42,27 +42,26 @@ function Accounts() {
                 <div className='mx-4'>
                   <div className='flex flex-col my-3'>
                     <span className='font-bold mt-3 text-lg md:text-2xl text-black'>
-                      {getUserData?.company}
+                      {userData?.company}
                     </span>
                     <span className='text-lg md:text-2xl text-gray-600'>
-                      {getUserData?.name}
+                      {userData?.name}
                     </span>
                   </div>
                   <p>
                     <b className='font-bold text-black'>Company Email:</b>
-                    {getUserData?.company_email}
+                    {userData?.company_email}
                   </p>
                   <p>
                     <b className='font-bold text-black'>User Email:</b>{' '}
-                    {getUserData?.email}
+                    {userData?.email}
                   </p>
                   <p>
                     <b className='font-bold text-black'>Role:</b>{' '}
-                    {getUserData?.role ? getUserData?.role : 'Admin'}
+                    {userData?.role ? userData?.role : 'Admin'}
                   </p>
                   <p>
-                    <b className='font-bold text-black'>ID:</b>{' '}
-                    {getUserData?.id}
+                    <b className='font-bold text-black'>ID:</b> {userData?.id}
                   </p>
                 </div>
               </div>

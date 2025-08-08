@@ -20,34 +20,70 @@ export const useAuth = () => React.useContext(authContext);
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const client = useQueryClient();
+
+  const { data: userData, refetch: refetchUser } = useQuery({
+    queryKey: ['userData', user?.email], // react-query will update when user changes
+    enabled: !!user?.email, // only run if user has email
+    queryFn: async () => {
+      const email = user.email;
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`
+      );
+      return data[0];
+    },
+  });
+
   useEffect(() => {
-    function unsubscribe() {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
-          setUser(user);
-          // console.log(user);
-          axios.post(
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user);
+
+        if (user.email) {
+          await axios.post(
             `${import.meta.env.VITE_BACKEND}/createUser?name=${
               user.displayName
-            }&email=${user.email}&token=${user.accessToken}`
+            }&email=${user.email}`
           );
-          // ...
-        } else {
-          setUser('userNotFound');
-          // console.log('user signed out');
-          // User is signed out
-          // ...
         }
-      });
+      } else {
+        setUser('userNotFound');
+        localStorage.removeItem('token');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user, userData]);
+  useEffect(() => {
+    if (
+      user &&
+      userData &&
+      (!localStorage.getItem('token') ||
+        localStorage.getItem('token') === 'undefined' ||
+        localStorage.getItem('token') === 'null')
+    ) {
+      const createToken = async () => {
+        try {
+          const res = await axios.post(
+            `${import.meta.env.VITE_BACKEND}/createToken`,
+            {
+              email: user.email,
+              name: user.displayName,
+              company_id: userData.company_id,
+              role: userData.role,
+              uid: user.uid,
+            }
+          );
+          localStorage.setItem('token', res.data);
+        } catch (err) {
+          console.error('Token creation failed:', err);
+        }
+      };
+
+      createToken();
     }
-    unsubscribe();
-    return () => {
-      unsubscribe();
-    };
-  }, [auth]);
+  }, [userData, user]);
+
   function loginWithGoogle() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -138,23 +174,7 @@ function AuthProvider({ children }) {
     });
   }
 
-  const client = useQueryClient();
-
-  const { data: getUserData, refetch: refetchUser } = useQuery({
-    queryKey: ['userData'],
-    queryFn: async () => {
-      await user;
-      const email = await user.email;
-      // console.log(email);
-      const data = await axios.get(
-        `${import.meta.env.VITE_BACKEND}/getUserByEmail/${email}`
-      );
-      refetchUser();
-      return data.data[0];
-    },
-  });
-
-  // getUserData();
+  // userData();
   //validate Password
   function validatePass(password) {
     const status = validatePassword(getAuth(), password);
@@ -168,7 +188,7 @@ function AuthProvider({ children }) {
     logout,
     user,
     validatePass,
-    getUserData,
+    userData,
   };
 
   return (

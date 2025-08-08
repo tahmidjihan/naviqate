@@ -32,14 +32,14 @@ function Databases() {
     '#7986CB',
     '#E0E0E0',
   ];
-  const { getUserData } = useAuth();
+  const { userData } = useAuth();
   const { data: databases, refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
       axios
         .get(
           `${import.meta.env.VITE_BACKEND}/getDatabases?id=${
-            getUserData.company_id
+            userData.company_id
           }`
         )
         .then((res) => {
