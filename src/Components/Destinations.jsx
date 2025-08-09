@@ -80,9 +80,14 @@ function Destinations() {
             >
               <a href='#'>Dashboard {'>'}</a>
             </h3>
+
             <h3 className='text-xl text-cyan cursor-pointer font-bold mb-7 w-full border-b-black border-b-2'>
               <span onClick={showModal}>Special! {'>'}</span>
             </h3>
+            <span href='#' className='text-xs text-cyan font-bold mb-7 w-full'>
+              <Link to='/logout'>Logout {'>'}</Link>{' '}
+              <Link href='#'>Emergency Logout {'>'}</Link>
+            </span>
           </div>
           <button className='btn primary-btn'>Get started</button>
         </div>

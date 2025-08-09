@@ -11,6 +11,7 @@ import Accounts from './Dashboard/Accounts';
 import LoadingScreen from './Components/LoadingScreen';
 import NotFound from './Components/NotFound';
 import MakeWebsite from './Dashboard/Components/MakeWebsite';
+import Logout from './Components/logout';
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path='/Login' element={<Authentication />} />
         <Route path='/loading' element={<LoadingScreen />} />
         <Route path='/makeWebsite' element={<MakeWebsite />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/dashboard' element={<DashboardLayout />}>
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/dashboard/databases' element={<Databases />} />
