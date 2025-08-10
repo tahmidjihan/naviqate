@@ -25,8 +25,8 @@ function Accounts() {
         <h2 className='text-xl md:text-2xl'>Accounts</h2>
         <div className='py-2 grid grid-cols-1 lg:grid-cols-5 gap-5'>
           <div className='col-span-1 lg:row-span-2 lg:col-span-2 relative'>
-            <div className='card w-full  rounded-3xl cyan-shadow bg-base-100 card-xl shadow-sm'>
-              <div className='card-body'>
+            <div className='card w-full rounded-3xl cyan-shadow bg-base-100 card-xl shadow-sm'>
+              <div className='p-5 sm:p-7'>
                 <div className='flex items-end'>
                   <div className='rounded-full max-w-[180px] max-h-[180px] overflow-hidden mx-4'>
                     <img
@@ -35,11 +35,11 @@ function Accounts() {
                       alt='Accounts'
                     />
                   </div>
-                  <div className='rounded-full max-w-[100px] max-h-[100px] overflow-hidden mx-4'>
+                  <div className='rounded-full max-w-[100px] max-h-[100px] overflow-hidden mx-2'>
                     <img src={user?.photoURL} className='' alt='' />
                   </div>
                 </div>
-                <div className='mx-4'>
+                <div className=' mx-1 sm:mx-2'>
                   <div className='flex flex-col my-3'>
                     <span className='font-bold mt-3 text-lg md:text-2xl text-black'>
                       {userData?.company}
@@ -48,17 +48,17 @@ function Accounts() {
                       {userData?.name}
                     </span>
                   </div>
-                  <p>
+                  <p className='flex flex-wrap'>
                     <b className='font-bold text-black'>Company Email:</b>
-                    {userData?.company_email}
+                    <span>{userData?.company_email} </span>
                   </p>
-                  <p>
+                  <p className='flex flex-wrap'>
                     <b className='font-bold text-black'>User Email:</b>{' '}
-                    {userData?.email}
+                    <span>{userData?.email}</span>
                   </p>
-                  <p>
+                  <p className='flex flex-wrap'>
                     <b className='font-bold text-black'>Role:</b>{' '}
-                    {userData?.role ? userData?.role : 'Admin'}
+                    <span>{userData?.role}</span>
                   </p>
                   <p>
                     <b className='font-bold text-black'>ID:</b> {userData?.id}
