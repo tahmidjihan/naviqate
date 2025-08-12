@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import LoadingScreen from '../../Components/LoadingScreen';
+import VerifyCompany from './verifyCompany';
 
 function VerifyCompany() {
   const [company, setCompany] = useState(false);
@@ -182,6 +183,7 @@ function VerifyCompany() {
       {company !== true && (
         <div className='h-screen w-screen items-center-safe fixed z-[1000000] bg-cyan-600'>
           <div className='flex justify-center items-center h-full w-full'>
+            <VerifyCompany />
             <MakeCompany />
           </div>
         </div>
