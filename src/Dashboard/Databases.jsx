@@ -32,33 +32,44 @@ function Databases() {
     '#7986CB',
     '#E0E0E0',
   ];
+
   const { userData } = useAuth();
   const { data: databases, refetch } = useQuery({
     queryKey: ['databases'],
     queryFn: () =>
-      axios.get(`/getDatabases?id=${userData.company_id}`).then((res) => {
-        return res.data;
-      }),
+      axios
+        .get(`/getDatabases?id=${userData.company_id}`)
+        .then((res) => res.data),
   });
-  // console.log(databases);
+
   useEffect(() => {
     refetch();
   }, []);
+
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
-        <h2 className='text-xl md:text-2xl'>Dashboard {'>'} databases</h2>
-        <div className='py-2 flex flex-col lg:flex-row gap-5'>
-          <div className='min-w-2/3'>
+        <h2 className='text-xl md:text-2xl lg:text-3xl'>
+          Dashboard {'>'} databases
+        </h2>
+
+        <div className='py-2 grid grid-cols-1 lg:grid-cols-5 gap-5'>
+          {/* Left Column - Table */}
+          <div className='col-span-1 lg:row-span-2 lg:col-span-3 relative'>
             <DashboardTable addNew={true} />
           </div>
-          <div className='flex flex-col gap-5'>
-            <div className='card w-xs bg-base-100 card-md cyan-shadow'>
-              <div className='card-body p-'>
-                <div className='card-title'>Activity</div>
-                <div className='w-full max-w-[200px]'>
+
+          {/* Right Column - Charts and Cards */}
+          <div className='flex flex-col gap-5 lg:col-span-2'>
+            {/* Activity Card */}
+            <div className='card rounded-3xl cyan-shadow bg-base-100 w-full'>
+              <div className='card-body p-5 sm:p-7'>
+                <h3 className='card-title text-lg md:text-xl font-bold'>
+                  Activity
+                </h3>
+                <div className='w-full flex justify-center'>
                   {databases && (
-                    <ResponsiveContainer width={240} height={240}>
+                    <ResponsiveContainer width='100%' height={300}>
                       <PieChart>
                         <Pie
                           data={databases}
@@ -68,37 +79,47 @@ function Databases() {
                           cy='50%'
                           outerRadius={100}
                           innerRadius={60}
-                          label
+                          label={({ name, percent }) =>
+                            `${name}: ${(percent * 100).toFixed(0)}%`
+                          }
                         >
-                          {databases &&
-                            databases.map((entry, index) => (
-                              <Cell
-                                key={`cell-${entry.name}`}
-                                fill={COLORS[index % COLORS.length]}
-                              />
-                            ))}
+                          {databases.map((entry, index) => (
+                            <Cell
+                              key={`cell-${entry.name}`}
+                              fill={COLORS[index % COLORS.length]}
+                            />
+                          ))}
                         </Pie>
-                        <Tooltip />
+                        <Tooltip
+                          formatter={(value) => [`${value} entries`, 'Count']}
+                        />
                       </PieChart>
                     </ResponsiveContainer>
                   )}
                 </div>
               </div>
             </div>
-            <div className='card bg-base-100 w-xs cyan-shadow'>
-              <figure className='px-4 pt-4'>
+
+            {/* Tutorial Card */}
+            <div className='card rounded-3xl cyan-shadow bg-base-100 w-full'>
+              <figure className='px-5 pt-5'>
                 <img
                   src='https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp'
-                  alt='Shoes'
-                  className='rounded-xl'
+                  alt='Database Tutorial'
+                  className='rounded-xl w-full h-auto max-h-[200px] object-cover'
                 />
               </figure>
-              <div className='card-body text-start'>
-                <h2 className='card-title text-xl font-bold'>
+              <div className='card-body items-start px-5 pb-5'>
+                <h2 className='card-title text-lg md:text-xl font-bold'>
                   Watch a Tutorial
                 </h2>
-                <div className='card-actions'>
-                  <button className='btn btn-primary'>Buy Now</button>
+                <p className='text-sm md:text-base text-gray-600 mb-3'>
+                  Learn how to manage your databases effectively
+                </p>
+                <div className='card-actions w-full'>
+                  <button className='btn btn-primary w-full rounded-full'>
+                    Watch Now
+                  </button>
                 </div>
               </div>
             </div>
