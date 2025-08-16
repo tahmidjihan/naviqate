@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../AuthProvider';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import LoadingScreen from '../../Components/LoadingScreen';
 import GetData from './getData';
 
 function DashboardTable({ count, lastUpdate }) {
@@ -18,7 +17,7 @@ function DashboardTable({ count, lastUpdate }) {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [userData, databases]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,7 +37,7 @@ function DashboardTable({ count, lastUpdate }) {
   }, [databases]);
 
   if (loading) {
-    return <LoadingScreen />;
+    return <p> loading...</p>;
   }
 
   return (

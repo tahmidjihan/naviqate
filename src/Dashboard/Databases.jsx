@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import DashboardTable from './Components/DashboardTable';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../AuthProvider';
+import axios from 'axios';
 
 function Databases() {
   const COLORS = [
@@ -34,22 +35,38 @@ function Databases() {
   ];
 
   const { userData } = useAuth();
-  const { data: databases, refetch } = useQuery({
-    queryKey: ['databases'],
+  const {
+    data: databases = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['databases', userData?.company_id],
     queryFn: () =>
       axios
         .get(`/getDatabases?id=${userData.company_id}`)
         .then((res) => res.data),
+    enabled: !!userData?.company_id,
   });
 
-  useEffect(() => {
-    refetch();
-  }, []);
+  if (isLoading) {
+    return (
+      <div className='bg-white min-h-screen w-full flex items-center justify-center'>
+        Loading...
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className='bg-white min-h-screen w-full flex items-center justify-center'>
+        Error loading data
+      </div>
+    );
+  }
 
   return (
     <div className='bg-white min-h-screen w-full'>
       <div className='p-4 my-10 lg:pl-16 xl:p-10 overflow-x-hidden container'>
-        {' '}
         <h2 className='text-xl md:text-2xl lg:text-3xl'>
           Dashboard {'>'} databases
         </h2>
@@ -68,34 +85,32 @@ function Databases() {
                   Activity
                 </h3>
                 <div className='w-full flex justify-center'>
-                  {databases && (
-                    <ResponsiveContainer width='100%' height={300}>
-                      <PieChart>
-                        <Pie
-                          data={databases}
-                          dataKey='total_data'
-                          nameKey='name'
-                          cx='50%'
-                          cy='50%'
-                          outerRadius={100}
-                          innerRadius={60}
-                          label={({ name, percent }) =>
-                            `${name}: ${(percent * 100).toFixed(0)}%`
-                          }
-                        >
-                          {databases.map((entry, index) => (
-                            <Cell
-                              key={`cell-${entry.name}`}
-                              fill={COLORS[index % COLORS.length]}
-                            />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          formatter={(value) => [`${value} entries`, 'Count']}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  )}
+                  <ResponsiveContainer width='100%' height={300}>
+                    <PieChart>
+                      <Pie
+                        data={databases}
+                        dataKey='total_data'
+                        nameKey='name'
+                        cx='50%'
+                        cy='50%'
+                        outerRadius={100}
+                        innerRadius={60}
+                        label={({ name, percent }) =>
+                          `${name}: ${(percent * 100).toFixed(0)}%`
+                        }
+                      >
+                        {databases.map((entry, index) => (
+                          <Cell
+                            key={`cell-${entry.name}`}
+                            fill={COLORS[index % COLORS.length]}
+                          />
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        formatter={(value) => [`${value} entries`, 'Count']}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </div>
