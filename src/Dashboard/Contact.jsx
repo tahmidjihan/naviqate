@@ -5,7 +5,8 @@ import { FaInstagram, FaEnvelope, FaPhoneAlt, FaLink } from 'react-icons/fa';
 function Contact() {
   return (
     <div className='bg-white min-h-screen w-full'>
-      <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
+      <div className='p-4 my-10 lg:pl-16 xl:p-10 overflow-x-hidden container'>
+        {' '}
         <h2 className='text-xl md:text-2xl'>Contact</h2>
         <div className='py-2'>
           <div className='card w-full h-full rounded-3xl cyan-shadow bg-base-100 card-sm shadow-sm'>

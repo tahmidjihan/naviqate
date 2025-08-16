@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegFile } from 'react-icons/fa';
 import { useAuth } from '../AuthProvider';
+
 export const users = [
   { id: 1, name: 'Dua L.', email: 'me@dualipa.com', role: 'Admin' },
   { id: 2, name: 'Sia', email: 'me@siamusic.com', role: 'Admin' },
@@ -18,64 +19,74 @@ export const users = [
 function Accounts() {
   const count = 5;
   const { user, userData } = useAuth();
-  // console.log(user, userData);
+
   return (
     <div className='bg-white min-h-screen w-full'>
-      <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
+      <div className='p-4 my-10 lg:pl-16 xl:p-10 overflow-x-hidden container'>
+        {' '}
         <h2 className='text-xl md:text-2xl'>Accounts</h2>
         <div className='py-2 grid grid-cols-1 lg:grid-cols-5 gap-5'>
+          {/* Profile Card */}
           <div className='col-span-1 lg:row-span-2 lg:col-span-2 relative'>
             <div className='card w-full rounded-3xl cyan-shadow bg-base-100 card-xl shadow-sm'>
               <div className='p-5 sm:p-7'>
-                <div className='flex items-end'>
-                  <div className='rounded-full max-w-[180px] max-h-[180px] overflow-hidden mx-4'>
+                <div className='flex flex-col sm:flex-row items-center sm:items-end gap-4'>
+                  <div className='rounded-full max-w-[180px] max-h-[180px] overflow-hidden'>
                     <img
                       src='.././Assets/icon.png'
                       className='hue-rotate-180 grayscale-50'
                       alt='Accounts'
                     />
                   </div>
-                  <div className='rounded-full max-w-[100px] max-h-[100px] overflow-hidden mx-2'>
+                  <div className='rounded-full max-w-[100px] max-h-[100px] overflow-hidden'>
                     <img src={user?.photoURL} className='' alt='' />
                   </div>
                 </div>
-                <div className=' mx-1 sm:mx-2'>
-                  <div className='flex flex-col my-3'>
-                    <span className='font-bold mt-3 text-lg md:text-2xl text-black'>
+                <div className='mt-4'>
+                  <div className='flex flex-col'>
+                    <span className='font-bold text-lg md:text-2xl text-black'>
                       {userData?.company}
                     </span>
                     <span className='text-lg md:text-2xl text-gray-600'>
                       {userData?.name}
                     </span>
                   </div>
-                  <p className='flex flex-wrap'>
-                    <b className='font-bold text-black'>Company Email:</b>
-                    <span>{userData?.company_email} </span>
-                  </p>
-                  <p className='flex flex-wrap'>
-                    <b className='font-bold text-black'>User Email:</b>{' '}
-                    <span>{userData?.email}</span>
-                  </p>
-                  <p className='flex flex-wrap'>
-                    <b className='font-bold text-black'>Role:</b>{' '}
-                    <span>{userData?.role}</span>
-                  </p>
-                  <p>
-                    <b className='font-bold text-black'>ID:</b> {userData?.id}
-                  </p>
+                  <div className='mt-3 space-y-2'>
+                    <p className='flex flex-wrap gap-1'>
+                      <b className='font-bold text-black'>Company Email:</b>
+                      <span className='break-all'>
+                        {userData?.company_email}
+                      </span>
+                    </p>
+                    <p className='flex flex-wrap gap-1'>
+                      <b className='font-bold text-black'>User Email:</b>
+                      <span className='break-all'>{userData?.email}</span>
+                    </p>
+                    <p className='flex flex-wrap gap-1'>
+                      <b className='font-bold text-black'>Role:</b>
+                      <span>{userData?.role}</span>
+                    </p>
+                    <p className='flex flex-wrap gap-1'>
+                      <b className='font-bold text-black'>ID:</b>
+                      <span>{userData?.id}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
               <img src='.././Assets/mountains.png' className='mx-5' alt='' />
             </div>
           </div>
+
+          {/* Right Column */}
           <div className='flex flex-col gap-5 lg:col-span-3'>
+            {/* Plan Card */}
             <div className='card rounded-3xl cyan-shadow bg-cyan w-full min-w-[250px] xl:min-w-xs h-full'>
-              <div className='card-body flex-row items-center align-middle'>
-                <div className='flex'>
-                  <div className='text-4xl lg:text-9xl text-white'>
+              <div className='card-body flex flex-col sm:flex-row items-center text-center sm:text-start justify-between gap-4'>
+                <div className='flex items-center flex-col sm:flex-row gap-4'>
+                  <div className='text-4xl lg:text-6xl text-white'>
                     <FaRegFile />
                   </div>
-                  <div className='flex flex-col'>
+                  <div className='flex flex-col md:text-start'>
                     <span className='text-xl md:text-2xl font-bold text-white'>
                       Plan
                     </span>
@@ -85,18 +96,21 @@ function Accounts() {
                     <span className='text-sm md:text-lg text-gray-200'>
                       Expires at 16 Aug
                     </span>
-                    <div className='card-actions'>
-                      <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
-                        Extend
-                      </button>
-                    </div>
                   </div>
-                  <div className='divider lg:divider-horizontal mx-2'></div>
-                  <div>
+                  <div className='card-actions'>
+                    <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
+                      Extend
+                    </button>
+                  </div>
+                </div>
+
+                <div className='flex flex-col sm:flex-row items-center gap-4'>
+                  <div className='divider  divider-vertical md:divider-horizontal mx-0 sm:mx-2'></div>
+                  <div className='flex flex-col items-center sm:items-start'>
                     <span className='text-xl md:text-2xl font-bold text-yellow-400'>
                       Danger
                     </span>
-                    <div className='card-actions flex flex-col mt-3'>
+                    <div className='card-actions flex flex-col sm:flex-row gap-2 mt-3'>
                       <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
                         Freeze Account
                       </button>
@@ -108,6 +122,8 @@ function Accounts() {
                 </div>
               </div>
             </div>
+
+            {/* Sharing Card */}
             <div className='card rounded-3xl cyan-shadow bg-white w-full min-w-[250px] xl:min-w-xs h-full'>
               <div className='card-body flex-col'>
                 <div className='flex items-center justify-between'>
@@ -116,16 +132,18 @@ function Accounts() {
                     See all
                   </span>
                 </div>
-                <div>
+                <div className='mt-4'>
                   <div className='overflow-x-auto'>
                     <table className='min-w-full text-sm text-gray-700'>
                       <thead className='bg-gray-100 text-left'>
                         <tr>
-                          <th className='px-4 py-2 w-1/12'>#</th>
-                          <th className='px-4 py-2 w-2/12'>Name</th>
-                          <th className='px-4 py-2 w-4/12'>Email</th>
-                          <th className='px-4 py-2 w-3/12'>Role</th>
-                          <th className='w-2/12 hidden md:table-cell'></th>
+                          <th className='px-4 py-2'>#</th>
+                          <th className='px-4 py-2'>Name</th>
+                          <th className='px-4 py-2 hidden sm:table-cell'>
+                            Email
+                          </th>
+                          <th className='px-4 py-2'>Role</th>
+                          <th className='px-4 py-2 hidden md:table-cell'></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -140,7 +158,9 @@ function Accounts() {
                                 {i + 1}
                               </td>
                               <td className='px-4 py-3'>{item.name}</td>
-                              <td className='px-4 py-3'>{item.email}</td>
+                              <td className='px-4 py-3 hidden sm:table-cell'>
+                                {item.email}
+                              </td>
                               <td className='px-4 py-3'>{item.role}</td>
                               <td className='px-4 py-3 rounded-r-full text-right hidden md:table-cell'>
                                 <button className='text-cyan-600 font-semibold'>
@@ -149,7 +169,6 @@ function Accounts() {
                               </td>
                             </tr>
                           ))}
-
                         <tr>
                           <td colSpan={5} className='py-3'>
                             <button
@@ -173,10 +192,11 @@ function Accounts() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
       <dialog id='my_modal_1' className='modal'>
         <div className='modal-box'>
           <form method='dialog'>
-            {/* if there is a button in form, it will close the modal */}
             <button className='btn btn-sm btn-circle btn-ghost text-2xl absolute right-2 top-2'>
               ✕
             </button>

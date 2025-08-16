@@ -48,11 +48,11 @@ function Databases() {
 
   return (
     <div className='bg-white min-h-screen w-full'>
-      <div className='p-4 my-10 md:p-10 overflow-x-hidden container'>
+      <div className='p-4 my-10 lg:pl-16 xl:p-10 overflow-x-hidden container'>
+        {' '}
         <h2 className='text-xl md:text-2xl lg:text-3xl'>
           Dashboard {'>'} databases
         </h2>
-
         <div className='py-2 grid grid-cols-1 lg:grid-cols-5 gap-5'>
           {/* Left Column - Table */}
           <div className='col-span-1 lg:row-span-2 lg:col-span-3 relative'>
