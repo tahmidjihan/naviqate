@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegFile } from 'react-icons/fa';
 import { useAuth } from '../AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const users = [
   { id: 1, name: 'Dua L.', email: 'me@dualipa.com', role: 'Admin' },
@@ -19,9 +20,11 @@ export const users = [
 function Accounts() {
   const count = 5;
   const { user, userData } = useAuth();
+  console.log(userData);
 
   return (
     <div className='bg-white min-h-screen w-full'>
+      <ToastContainer />
       <div className='p-4 my-10 lg:pl-16 xl:p-10 overflow-x-hidden container'>
         {' '}
         <h2 className='text-xl md:text-2xl'>Accounts</h2>
@@ -201,8 +204,26 @@ function Accounts() {
               ✕
             </button>
           </form>
-          <h3 className='font-bold text-lg'>Add data !</h3>
-          <p className='py-4'>Press ESC key or click on ✕ button to close</p>
+          <h3 className='font-bold text-lg'>Add Peoples !</h3>
+          <div className='form-control w-full w-full my-2'>
+            <input
+              type='text'
+              defaultValue={`https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company_name}&company_email=${userData?.company_email}`}
+              className='input input-bordered w-full max-w-xs'
+              disabled
+            />
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company_name}&company_email=${userData?.company_email}`
+                );
+                toast.success('Copied!');
+              }}
+              className='btn bg-cyan text-white font-bold text-md'
+            >
+              Copy
+            </button>
+          </div>
         </div>
       </dialog>
     </div>
