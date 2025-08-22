@@ -20,7 +20,7 @@ export const users = [
 function Accounts() {
   const count = 5;
   const { user, userData } = useAuth();
-  console.log(userData);
+  // console.log(userData);
 
   return (
     <div className='bg-white min-h-screen w-full'>
@@ -99,23 +99,22 @@ function Accounts() {
                     <span className='text-sm md:text-lg text-gray-200'>
                       Expires at 16 Aug
                     </span>
-                  </div>
-                  <div className='card-actions'>
                     <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
                       Extend
                     </button>
                   </div>
+                  <div className='card-actions'></div>
                 </div>
 
                 <div className='flex flex-col sm:flex-row items-center gap-4'>
                   <div className='divider  divider-vertical md:divider-horizontal mx-0 sm:mx-2'></div>
                   <div className='flex flex-col items-center sm:items-start'>
-                    <span className='text-xl md:text-2xl font-bold text-yellow-400'>
-                      Danger
+                    <span className='text-xl md:text-2xl font-bold text-white'>
+                      Additional things
                     </span>
                     <div className='card-actions flex flex-col sm:flex-row gap-2 mt-3'>
                       <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
-                        Freeze Account
+                        Copy secret
                       </button>
                       <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
                         UnSubscribe
@@ -204,12 +203,14 @@ function Accounts() {
               ✕
             </button>
           </form>
-          <h3 className='font-bold text-lg'>Add Peoples !</h3>
-          <div className='form-control w-full w-full my-2'>
+          <h3 className='font-bold text-lg'>Add Peoples!</h3>
+          <p className='py-4'>Invite your team members to your company.</p>
+          <span>Invite Link:</span>
+          <div className='form-control w-full my-2'>
             <input
               type='text'
               defaultValue={`https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company_name}&company_email=${userData?.company_email}`}
-              className='input input-bordered w-full max-w-xs'
+              className='input input-bordered'
               disabled
             />
             <button

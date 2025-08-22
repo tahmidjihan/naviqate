@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import LoadingScreen from '../../Components/LoadingScreen';
+import { useAuth } from '../../AuthProvider';
 
 function InvitedCompany() {
+  const { userData } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,14 @@ function InvitedCompany() {
       }
     }, 1000);
   }, [companyId, companyName && companyEmail]);
+  useEffect(() => {
+    console.log(userData);
+    if (!userData) {
+      navigate('/');
+    } else if (userData.company_id) {
+      navigate('/dashboard');
+    }
+  }, [userData]);
   if (loading) {
     return <LoadingScreen />;
   }
