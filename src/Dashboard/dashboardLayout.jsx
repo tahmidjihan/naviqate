@@ -38,7 +38,7 @@ function DashboardLayout() {
   return (
     <>
       <VerifyCompany />
-      {/* <VerifyWebsite></VerifyWebsite> */}
+      <VerifyWebsite></VerifyWebsite>
       <div className='flex'>
         {/* <div className='h-screen w-screen fixed z-[1000000] bg-cyan-600 lg:hidden'>
           <h1 className='text-2xl font-bold text-white text-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>

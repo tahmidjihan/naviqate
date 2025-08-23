@@ -183,7 +183,6 @@ function VerifyCompany() {
       {company !== true && (
         <div className='h-screen w-screen items-center-safe fixed z-[1000000] bg-cyan-600'>
           <div className='flex justify-center items-center h-full w-full'>
-            <VerifyWebsite />
             <MakeCompany />
           </div>
         </div>

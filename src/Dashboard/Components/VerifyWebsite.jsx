@@ -11,15 +11,17 @@ function VerifyWebsite() {
     queryKey: ['website'],
     queryFn: () =>
       axios.get(`/websiteData/${userData.company_id}`).then((res) => {
-        setWebsite(true);
-        // console.log(res.data);
+        if (res.data.length > 0) {
+          setWebsite(true);
+        }
+        console.log(res.data);
         return res.data;
       }),
   });
   useEffect(() => {
     refetch();
   }, [website, user, userData]);
-  if (website) {
+  if (website === true) {
     return null;
   }
   return (
