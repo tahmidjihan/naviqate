@@ -3,11 +3,12 @@ import { useAuth } from '../../AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
 import axios from 'axios';
+import LoadingScreen from '../../Components/LoadingScreen';
 
 function VerifyWebsite() {
   const [website, setWebsite] = useState(false);
   const { user, userData } = useAuth();
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ['website'],
     queryFn: () =>
       axios.get(`/websiteData/${userData.company_id}`).then((res) => {
@@ -23,6 +24,9 @@ function VerifyWebsite() {
   }, [website, user, userData]);
   if (website === true) {
     return null;
+  }
+  if (isLoading) {
+    return <LoadingScreen />;
   }
   return (
     <div className='h-screen w-screen flex items-center fixed z-[1000000] bg-cyan-600'>
