@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegFile } from 'react-icons/fa';
 import { useAuth } from '../AuthProvider';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 
 export const users = [
   { id: 1, name: 'Dua L.', email: 'me@dualipa.com', role: 'Admin' },
@@ -21,7 +22,20 @@ function Accounts() {
   const count = 5;
   const { user, userData } = useAuth();
   // console.log(userData);
-
+  const [company, setCompany] = useState(null);
+  useEffect(() => {
+    if (user === 'userNotFound') {
+      return;
+    }
+    axios.get(`/getCompany/${userData?.company_email}`).then((res) => {
+      if (res.data) {
+        // console.log(res.data);
+        setCompany(res.data[0]);
+      }
+      // return res.data[0];
+    });
+  }, [user, userData]);
+  console.log(company);
   return (
     <div className='bg-white min-h-screen w-full'>
       <ToastContainer />
@@ -113,7 +127,15 @@ function Accounts() {
                       Additional things
                     </span>
                     <div className='card-actions flex flex-col sm:flex-row gap-2 mt-3'>
-                      <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            company?.company_secret
+                          );
+                          toast.success('Copied to clipboard');
+                        }}
+                        className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'
+                      >
                         Copy secret
                       </button>
                       <button className='btn bg-white text-cyan-500 font-bold rounded-full px-4 btn-sm'>
@@ -209,14 +231,14 @@ function Accounts() {
           <div className='form-control w-full my-2'>
             <input
               type='text'
-              defaultValue={`https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company_name}&company_email=${userData?.company_email}`}
+              defaultValue={`https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company}&company_email=${userData?.company_email}`}
               className='input input-bordered'
               disabled
             />
             <button
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company_name}&company_email=${userData?.company_email}`
+                  `https://naviqate.web.app/invitedCompany?company_id=${userData?.company_id}&company_name=${userData?.company}&company_email=${userData?.company_email}`
                 );
                 toast.success('Copied!');
               }}
