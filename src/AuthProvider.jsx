@@ -28,6 +28,7 @@ function AuthProvider({ children }) {
     queryFn: async () => {
       const email = user.email;
       const { data } = await axios.get(`/getUserByEmail/${email}`);
+      console.log(data);
       return data[0];
     },
   });

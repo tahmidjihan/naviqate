@@ -15,7 +15,7 @@ function VerifyWebsite() {
         if (res.data.length > 0) {
           setWebsite(true);
         }
-        // console.log(res.data);
+        console.log(res.data);
         return res.data;
       }),
   });

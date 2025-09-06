@@ -9,7 +9,7 @@ function Footer() {
         <div className='text-white flex flex-col items-center gap-4 lg:items-start mx-auto lg:mx-0'>
           <Logo className={'h-[50px] min-w-[200px] px-2'} />
           <p
-            className='text-lg max-w-lg text-center lg:text-start'
+            className='text-2xl max-w-lg text-center lg:text-start'
             style={{ color: '#fff' }}
           >
             Stop begging your tech friend. With Naviqate, your business runs
