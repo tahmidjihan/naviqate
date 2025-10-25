@@ -5,6 +5,7 @@ import Dashboard from './Dashboard/Dashboard';
 import Blogs from './Dashboard/Blogs';
 import Settings from './Dashboard/Settings';
 import Inbox from './Dashboard/Inbox';
+import Naviq from './Dashboard/Naviq';
 
 function Router() {
   return (
@@ -14,7 +15,7 @@ function Router() {
         <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/Dashboard/Inbox' element={<Inbox />} />
         <Route path='/Dashboard/Blogs' element={<Blogs />} />
-        <Route path='/Dashboard/Naviq' element={<Dashboard />} />
+        <Route path='/Dashboard/Naviq' element={<Naviq />} />
         <Route path='/Dashboard/Settings' element={<Settings />} />
       </Route>
     </Routes>

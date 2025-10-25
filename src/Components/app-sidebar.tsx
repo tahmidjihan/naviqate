@@ -44,8 +44,8 @@ const items = [
     icon: Calendar,
   },
   {
-    title: 'Search',
-    url: '#',
+    title: 'Naviq',
+    url: '/Dashboard/Naviq',
     icon: Search,
   },
   {
