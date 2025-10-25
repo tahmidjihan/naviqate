@@ -6,8 +6,10 @@ export default function Layout() {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
-        <SidebarTrigger />
+      <main className='px-10'>
+        <div className='block lg:hidden'>
+          <SidebarTrigger />
+        </div>
         <Outlet />
       </main>
     </SidebarProvider>

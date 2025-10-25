@@ -7,7 +7,6 @@ import {
   Settings,
   User2,
 } from 'lucide-react';
-
 import {
   Sidebar,
   SidebarContent,
@@ -25,12 +24,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Link, useLocation } from 'react-router';
 
 // Menu items.
 const items = [
   {
     title: 'Home',
-    url: '#',
+    url: '/Dashboard',
     icon: Home,
   },
   {
@@ -56,20 +56,33 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const currentRoute = useLocation().pathname;
   return (
-    <Sidebar>
+    <Sidebar className='shadow-lg shadow-cyan-700 border-r-white'>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className='py-10 pb-20'>
+            <Link to='/'>
+              <img
+                src='./Assets/naviqate-icon-beside.png'
+                className='h-10'
+                alt=''
+              />
+            </Link>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                  <SidebarMenuButton
+                    isActive={currentRoute === item.url}
+                    asChild
+                    tooltip={item.title}
+                  >
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -93,9 +106,6 @@ export function AppSidebar() {
               >
                 <DropdownMenuItem>
                   <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <span>Sign out</span>
