@@ -58,7 +58,7 @@ const items = [
 export function AppSidebar() {
   const currentRoute = useLocation().pathname;
   return (
-    <Sidebar className='shadow-lg shadow-cyan-700 border-r-white'>
+    <Sidebar className='shadow-xl shadow-cyan-600 border-r-white'>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className='py-10 pb-20'>
