@@ -50,7 +50,7 @@ const items = [
   },
   {
     title: 'Settings',
-    url: '#',
+    url: '/Dashboard/Settings',
     icon: Settings,
   },
 ];

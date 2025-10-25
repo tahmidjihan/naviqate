@@ -3,6 +3,7 @@ import App from './App';
 import Layout from './Dashboard/Layout';
 import Dashboard from './Dashboard/Dashboard';
 import Blogs from './Dashboard/Blogs';
+import Settings from './Dashboard/Settings';
 
 function Router() {
   return (
@@ -13,7 +14,7 @@ function Router() {
         <Route path='/Dashboard/Inbox' element={<Dashboard />} />
         <Route path='/Dashboard/Blogs' element={<Blogs />} />
         <Route path='/Dashboard/Naviq' element={<Dashboard />} />
-        <Route path='/Dashboard/Settings' element={<Dashboard />} />
+        <Route path='/Dashboard/Settings' element={<Settings />} />
       </Route>
     </Routes>
   );
