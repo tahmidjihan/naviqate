@@ -9,6 +9,10 @@ function Router() {
       <Route path='/' element={<App />} />
       <Route path='/Dashboard' element={<Layout />}>
         <Route path='/Dashboard' element={<Dashboard />} />
+        <Route path='/Dashboard/Inbox' element={<Dashboard />} />
+        <Route path='/Dashboard/Blogs' element={<Dashboard />} />
+        <Route path='/Dashboard/Naviq' element={<Dashboard />} />
+        <Route path='/Dashboard/Settings' element={<Dashboard />} />
       </Route>
     </Routes>
   );
