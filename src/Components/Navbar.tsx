@@ -1,3 +1,5 @@
+import { Link } from 'react-router';
+
 function Navbar() {
   return (
     <div>
@@ -12,9 +14,12 @@ function Navbar() {
             <li>Contact</li>
             <li>Blogs</li>
             <li>
-              <button className='p-2 px-5 rounded-2xl text-white bg-cyan-600'>
-                Get Started
-              </button>
+              <Link
+                to='/Dashboard'
+                className='p-2 px-5 rounded-2xl text-white bg-cyan-600'
+              >
+                Dashboard
+              </Link>
             </li>
           </ul>
         </div>

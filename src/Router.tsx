@@ -1,10 +1,15 @@
 import { Route, Routes } from 'react-router';
 import App from './App';
+import Layout from './Dashboard/Layout';
+import Dashboard from './Dashboard/Dashboard';
 
 function Router() {
   return (
     <Routes>
       <Route path='/' element={<App />} />
+      <Route path='/Dashboard' element={<Layout />}>
+        <Route path='/Dashboard' element={<Dashboard />} />
+      </Route>
     </Routes>
   );
 }
