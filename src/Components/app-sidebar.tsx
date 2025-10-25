@@ -39,8 +39,8 @@ const items = [
     icon: Inbox,
   },
   {
-    title: 'Calendar',
-    url: '#',
+    title: 'Blogs',
+    url: '/Dashboard/Blogs',
     icon: Calendar,
   },
   {
