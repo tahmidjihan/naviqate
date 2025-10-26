@@ -1,179 +1,209 @@
-import * as React from "react"
 import {
-  IconCamera,
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react"
-
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+  Calendar,
+  ChevronUp,
+  Inbox,
+  Search,
+  Settings,
+  User2,
+  Camera,
+  BarChart3,
+  LayoutDashboard,
+  Database,
+  FileText,
+  Folder,
+  HelpCircle,
+  List,
+  PieChart,
+  Users,
+} from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from '@/components/ui/sidebar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Link, useLocation } from 'react-router';
+import Logo from '@/Components/logo';
+import { NavDocuments } from '@/components/nav-documents';
+import { NavMain } from '@/components/nav-main';
+import { NavSecondary } from '@/components/nav-secondary';
 
+// Combined menu items - keeping the original structure but adding new sections
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: '/avatars/shadcn.jpg',
   },
+
+  // Original main navigation items
   navMain: [
     {
-      title: "Dashboard",
-      url: "#",
-      icon: IconDashboard,
+      title: 'Dashboard',
+      url: '/Dashboard',
+      icon: LayoutDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: 'Inbox',
+      url: '/Dashboard/Inbox',
+      icon: Inbox,
     },
     {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
+      title: 'Blogs',
+      url: '/Dashboard/Blogs',
+      icon: Calendar,
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
+      title: 'Lifecycle',
+      url: '/Dashboard/Lifecycle',
+      icon: List,
     },
     {
-      title: "Team",
-      url: "#",
-      icon: IconUsers,
+      title: 'Analytics',
+      url: '/Dashboard/Analytics',
+      icon: BarChart3,
+    },
+    {
+      title: 'Projects',
+      url: '/Dashboard/Projects',
+      icon: Folder,
+    },
+    {
+      title: 'Team',
+      url: '/Dashboard/Team',
+      icon: Users,
     },
   ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
+
+  // Documents section
   documents: [
     {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
+      name: 'Data Library',
+      url: '/Dashboard/DataLibrary',
+      icon: Database,
     },
     {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
+      name: 'Reports',
+      url: '/Dashboard/Reports',
+      icon: PieChart,
     },
     {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
+      name: 'Word Assistant',
+      url: '/Dashboard/WordAssistant',
+      icon: FileText,
     },
   ],
-}
+
+  // Secondary navigation (moved to footer area)
+  navSecondary: [
+    {
+      title: 'Settings',
+      url: '/Dashboard/Settings',
+      icon: Settings,
+    },
+    {
+      title: 'Get Help',
+      url: '/Dashboard/Help',
+      icon: HelpCircle,
+    },
+    {
+      title: 'Search',
+      url: '/Dashboard/Search',
+      icon: Search,
+    },
+  ],
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const currentRoute = useLocation().pathname;
+
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar
+      collapsible='offcanvas'
+      className='shadow-xl shadow-cyan-600 border-r-white'
+      {...props}
+    >
       <SidebarHeader>
+        <SidebarGroup>
+          <SidebarGroupLabel className='pt-10'>
+            <Link to='/'>
+              <Logo className='h-[50px] min-w-[200px] px-2' />
+            </Link>
+          </SidebarGroupLabel>
+        </SidebarGroup>
+      </SidebarHeader>
+
+      <SidebarContent>
+        {/* Main Navigation */}
+        <SidebarGroup>
+          <SidebarGroupContent>
+            {/* @ts-ignore  */}
+            <NavMain items={data.navMain} currentRoute={currentRoute} />
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Documents Section */}
+        <SidebarGroup>
+          {/* @ts-ignore  */}
+          <NavDocuments items={data.documents} />
+        </SidebarGroup>
+
+        {/* Secondary Navigation - moved to auto margin top */}
+        <SidebarGroup className='mt-auto'>
+          <SidebarGroupContent>
+            <NavSecondary
+              // @ts-ignore
+              items={data.navSecondary}
+              currentRoute={currentRoute}
+            />
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+
+      <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
-            </SidebarMenuButton>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <User2 />
+                  {data.user.name}
+                  <ChevronUp className='ml-auto' />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side='top'
+                className='w-[--radix-popper-anchor-width]'
+              >
+                <DropdownMenuItem>
+                  <span>Account</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Billing</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Sign out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
