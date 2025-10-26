@@ -1,7 +1,8 @@
+import iconBeside from '@/assets/naviqate-icon-beside.png';
 function Logo({ className }: { className?: string }) {
   return (
     <img
-      src='../../../Assets/naviqate-icon-beside.png'
+      src={iconBeside}
       alt='Naviqate'
       className={`rounded-3xl ${className} bg-white`}
     />

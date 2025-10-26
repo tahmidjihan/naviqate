@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Link, useLocation } from 'react-router';
+import Logo from './logo';
 
 // Menu items.
 const items = [
@@ -63,11 +64,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel className='py-10 pb-20'>
             <Link to='/'>
-              <img
-                src='./Assets/naviqate-icon-beside.png'
-                className='h-10'
-                alt=''
-              />
+              <Logo className='h-[50px] min-w-[200px] px-2' />
             </Link>
           </SidebarGroupLabel>
           <SidebarGroupContent>
