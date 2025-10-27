@@ -1,6 +1,5 @@
-import { IconCirclePlusFilled, IconMail, type Icon } from '@tabler/icons-react';
+import { type Icon } from '@tabler/icons-react';
 
-import { Button } from '@/components/ui/button';
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,7 +7,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 export function NavMain({
   items,
@@ -19,6 +18,7 @@ export function NavMain({
     icon?: Icon;
   }[];
 }) {
+  const location = useLocation().pathname;
   return (
     <SidebarGroup>
       <SidebarGroupContent className='flex flex-col gap-2 border-t-2 border-cyan-600 pt-5'>
@@ -26,7 +26,10 @@ export function NavMain({
           {items.map((item) => (
             <Link to={item.url}>
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton tooltip={item.title}>
+                <SidebarMenuButton
+                  isActive={location === item.url /*  */}
+                  tooltip={item.title}
+                >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </SidebarMenuButton>
