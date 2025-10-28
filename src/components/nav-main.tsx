@@ -16,6 +16,7 @@ export function NavMain({
     title: string;
     url: string;
     icon?: Icon;
+    disabled?: boolean;
   }[];
 }) {
   const location = useLocation().pathname;
@@ -23,19 +24,35 @@ export function NavMain({
     <SidebarGroup>
       <SidebarGroupContent className='flex flex-col gap-2 border-t-2 border-cyan-600 pt-5'>
         <SidebarMenu>
-          {items.map((item) => (
-            <Link to={item.url}>
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton
-                  isActive={location === item.url /*  */}
-                  tooltip={item.title}
-                >
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </Link>
-          ))}
+          {items.map((item) => {
+            if (item?.disabled == true) {
+              return (
+                <button key={item.title} disabled>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild>
+                      <div className='flex cursor-not-allowed hover:opacity-100 opacity-50 hover:bg-transparent text-gray-600'>
+                        {item.icon && <item.icon />}
+                        <span>{item.title}</span>
+                      </div>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </button>
+              );
+            }
+            return (
+              <Link to={item.url} key={item.title}>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    isActive={location === item.url /*  */}
+                    tooltip={item.title}
+                  >
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </Link>
+            );
+          })}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

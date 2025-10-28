@@ -54,55 +54,43 @@ const data = {
       title: 'Dashboard',
       url: '/Dashboard',
       icon: LayoutDashboard,
+      disabled: false,
     },
     {
       title: 'Inbox',
       url: '/Dashboard/Inbox',
       icon: Inbox,
+      disabled: false,
     },
     {
       title: 'Blogs',
       url: '/Dashboard/Blogs',
       icon: Calendar,
+      disabled: false,
     },
     {
       title: 'Lifecycle',
       url: '/Dashboard/Lifecycle',
       icon: List,
+      disabled: true,
     },
     {
       title: 'Analytics',
       url: '/Dashboard/Analytics',
       icon: BarChart3,
+      disabled: true,
     },
     {
       title: 'Projects',
       url: '/Dashboard/Projects',
       icon: Folder,
+      disabled: true,
     },
     {
       title: 'Team',
       url: '/Dashboard/Team',
       icon: Users,
-    },
-  ],
-
-  // Documents section
-  documents: [
-    {
-      name: 'Data Library',
-      url: '/Dashboard/DataLibrary',
-      icon: Database,
-    },
-    {
-      name: 'Reports',
-      url: '/Dashboard/Reports',
-      icon: PieChart,
-    },
-    {
-      name: 'Word Assistant',
-      url: '/Dashboard/WordAssistant',
-      icon: FileText,
+      disabled: true,
     },
   ],
 
@@ -155,10 +143,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
 
         {/* Documents Section */}
-        <SidebarGroup>
-          {/* @ts-ignore  */}
+        {/* <SidebarGroup>
+    
           <NavDocuments items={data.documents} />
-        </SidebarGroup>
+        </SidebarGroup> */}
 
         {/* Secondary Navigation - moved to auto margin top */}
         <SidebarGroup className='mt-auto'>
@@ -173,7 +161,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
+        {/* <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -202,7 +190,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
-        </SidebarMenu>
+        </SidebarMenu> */}
       </SidebarFooter>
     </Sidebar>
   );
