@@ -14,32 +14,33 @@ function Blogs() {
   return (
     <div className='flex flex-col h-full'>
       <DashboardHeader />
-      <div className='grid grid-cols-4 gap-5'>
+      <div className=''>
         {/* {Array.from({ length: 4 }).map((_, index) => (
           <DisplayCard className='col-span-1' key={index} />
         ))} */}
-        <DisplayCard className='col-span-3 '>
+        {/* <DisplayCard className='col-span-3 '>
           <div>
-            <div className='py-2 border-b-2 border-cyan-600'>
-              <h3 className='font-bold ubuntu-font text-2xl'>Make a Blog</h3>
-            </div>
+
             <div>
               <BlogForm />
             </div>
           </div>
-        </DisplayCard>
+        </DisplayCard> */}
         <div className='flex flex-col gap-5 col-span-1'>
-          <DisplayCard className='col-span-1'>
+          <DisplayCard className='min-h-screen my-5'>
             <div className='h-full flex flex-col'>
-              <div className='py-5 border-b-2 border-cyan-600'>
+              <div className='pt-5 pb-2 mb-3 border-b-2 border-cyan-600 flex items-center justify-between'>
                 <h3 className='font-bold ubuntu-font text-2xl'>
                   Recent Blog Posts
                 </h3>
+                <button className='bg-cyan-600 cursor-pointer text-white px-5 py-1 rounded-2xl text-xs hover:bg-cyan-700 transition'>
+                  New Post
+                </button>
               </div>
               <div>
                 <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
-                  <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-                    <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                  <table className='w-full text-sm text-left rtl:text-right text-gray-500 '>
+                    <thead className='text-xs text-gray-200 uppercase bg-cyan-600'>
                       <tr>
                         <th scope='col' className='px-6 py-3'>
                           Product name
