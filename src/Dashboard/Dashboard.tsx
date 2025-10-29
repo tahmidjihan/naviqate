@@ -2,6 +2,17 @@ import DisplayCard from '@/Components/DisplayCards';
 import DashboardHeader from '../Components/DashboardHeader';
 import websiteData from '@/assets/websiteData.json';
 import { DynamicIcon } from 'lucide-react/dynamic';
+import {
+  Bar,
+  BarChart,
+  Line,
+  Tooltip,
+  ComposedChart,
+  XAxis,
+  CartesianGrid,
+  Area,
+  YAxis,
+} from 'recharts';
 
 function Dashboard() {
   return (
@@ -87,18 +98,169 @@ function Dashboard() {
           </div>
         </DisplayCard>
         <div className='flex flex-col gap-5 col-span-2'>
-          <DisplayCard className='col-span-2 row-span-2'>
+          <DisplayCard className='col-span-2 row-span-2 p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300'>
             <div className='h-full flex flex-col'>
-              <h3 className='font-bold mb-5 ubuntu-font text-2xl'>
-                Project Overview
-              </h3>
-              <div className='flex-grow bg-white border border-gray-200 rounded-lg flex items-center justify-center'>
-                {/* Placeholder for Chart */}
-                <span className='text-gray-400'>[Chart Placeholder]</span>
+              {/* Header Section */}
+              <div className='flex justify-between items-center mb-6'>
+                <div>
+                  <h3 className='font-bold ubuntu-font text-2xl text-slate-800 mb-1'>
+                    Activity Overview
+                  </h3>
+                  <p className='text-slate-500 text-sm'>
+                    Last 7 days performance
+                  </p>
+                </div>
+                <div className='flex items-center gap-3'>
+                  <div className='flex items-center gap-2'>
+                    <div className='w-3 h-3 rounded-full bg-cyan-500'></div>
+                    <span className='text-slate-600 text-sm font-medium'>
+                      Visits
+                    </span>
+                  </div>
+                  <div className='h-4 w-px bg-slate-300'></div>
+                  <div className='text-sm text-slate-700 font-semibold'>
+                    {websiteData.activityData
+                      .reduce((sum, day) => sum + day.visits, 0)
+                      .toLocaleString()}{' '}
+                    total
+                  </div>
+                </div>
+              </div>
+
+              {/* Chart Section */}
+              <div className='flex-1 -mx-2 -mb-2'>
+                <ComposedChart
+                  width={700}
+                  height={280}
+                  className='w-full'
+                  data={websiteData.activityData}
+                  margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
+                >
+                  <defs>
+                    <linearGradient
+                      id='barGradient'
+                      x1='0'
+                      y1='0'
+                      x2='0'
+                      y2='1'
+                    >
+                      <stop offset='0%' stopColor='#06b6d4' stopOpacity={0.9} />
+                      <stop
+                        offset='100%'
+                        stopColor='#0891b2'
+                        stopOpacity={0.5}
+                      />
+                    </linearGradient>
+                    <linearGradient
+                      id='lineGradient'
+                      x1='0'
+                      y1='0'
+                      x2='1'
+                      y2='0'
+                    >
+                      <stop offset='0%' stopColor='#0891b2' stopOpacity={0.9} />
+                      <stop
+                        offset='100%'
+                        stopColor='#06b6d4'
+                        stopOpacity={0.9}
+                      />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Grid */}
+                  <CartesianGrid
+                    strokeDasharray='3 3'
+                    vertical={false}
+                    stroke='#f1f5f9'
+                    strokeOpacity={0.8}
+                  />
+
+                  {/* X Axis */}
+                  <XAxis
+                    dataKey='day'
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{
+                      fill: '#64748b',
+                      fontSize: 11,
+                      fontWeight: 500,
+                      fontFamily: 'system-ui',
+                    }}
+                    padding={{ left: 8, right: 8 }}
+                  />
+
+                  {/* Bars */}
+                  <Bar
+                    dataKey='visits'
+                    fill='url(#barGradient)'
+                    radius={[4, 4, 0, 0]}
+                    barSize={40}
+                    opacity={0.9}
+                  />
+                  {/* Tooltip */}
+                  <Tooltip
+                    contentStyle={{
+                      background: 'rgba(255, 255, 255, 0.98)',
+                      backdropFilter: 'blur(12px)',
+                      border: '1px solid rgba(226, 232, 240, 0.8)',
+                      borderRadius: '10px',
+                      boxShadow: '0 8px 30px -6px rgba(0, 0, 0, 0.12)',
+                      padding: '12px 16px',
+                      fontSize: '13px',
+                      fontFamily: 'system-ui',
+                    }}
+                    itemStyle={{
+                      color: '#0f172a',
+                      fontSize: '13px',
+                      fontWeight: '600',
+                      padding: '2px 0',
+                    }}
+                    labelStyle={{
+                      color: '#475569',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      marginBottom: '6px',
+                      borderBottom: '1px solid #f1f5f9',
+                      paddingBottom: '4px',
+                    }}
+                    cursor={{
+                      stroke: '#cbd5e1',
+                      strokeWidth: 1,
+                      strokeDasharray: '3 3',
+                    }}
+                    formatter={(value) => [value.toLocaleString(), 'Visits']}
+                  />
+                </ComposedChart>
+              </div>
+
+              {/* Footer Stats */}
+              <div className='flex items-center justify-between pt-4 mt-2 border-t border-slate-100'>
+                <div className='text-xs text-slate-500'>Updated just now</div>
+                <div className='flex gap-4 text-xs'>
+                  <div className='text-slate-600'>
+                    <span className='font-semibold text-cyan-600'>
+                      {Math.max(
+                        ...websiteData.activityData.map((d) => d.visits)
+                      ).toLocaleString()}
+                    </span>{' '}
+                    peak visits
+                  </div>
+                  <div className='text-slate-600'>
+                    <span className='font-semibold text-cyan-600'>
+                      {Math.round(
+                        websiteData.activityData.reduce(
+                          (sum, day) => sum + day.visits,
+                          0
+                        ) / websiteData.activityData.length
+                      ).toLocaleString()}
+                    </span>{' '}
+                    avg daily
+                  </div>
+                </div>
               </div>
             </div>
           </DisplayCard>
-          <DisplayCard className='col-span-2'>
+          {/* <DisplayCard className='col-span-2'>
             <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
               <table className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
                 <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
@@ -140,7 +302,7 @@ function Dashboard() {
                 </tbody>
               </table>
             </div>
-          </DisplayCard>
+          </DisplayCard> */}
         </div>
       </div>
     </div>

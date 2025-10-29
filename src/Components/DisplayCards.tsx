@@ -4,10 +4,12 @@ function DisplayCard({
   children = (
     <>
       <div className=''>
-        <h3 className='font-bold mb-2 ubuntu-font text-2xl'>Project Title</h3>
+        <h3 className='font-bold mb-2 ubuntu-font text-2xl'>
+          Something Coming Soon
+        </h3>
         <p className='text-gray-600'>
-          This is a brief description of the project. It gives an overview of
-          what the project is about.
+          This section is under development. Please check back later for
+          updates.
         </p>
       </div>
     </>

@@ -3,12 +3,13 @@
   "owner": "SomeEmail@example.com",
   "domain": "somewebsite.com",
   "activityData": [
-    { "month": "January", "desktop": 186, "mobile": 80 },
-    { "month": "February", "desktop": 305, "mobile": 200 },
-    { "month": "March", "desktop": 237, "mobile": 120 },
-    { "month": "April", "desktop": 73, "mobile": 190 },
-    { "month": "May", "desktop": 209, "mobile": 130 },
-    { "month": "June", "desktop": 214, "mobile": 140 }
+    { "day": "Sat", "visits": 40 },
+    { "day": "Sun", "visits": 20 },
+    { "day": "Mon", "visits": 10 },
+    { "day": "Tue", "visits": 19 },
+    { "day": "Wed", "visits": 13 },
+    { "day": "Thu", "visits": 36 },
+    { "day": "Fri", "visits": 17 }
   ],
   "info": [
     {
