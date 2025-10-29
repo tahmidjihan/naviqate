@@ -197,9 +197,9 @@ function Inbox() {
                     </tbody>
                   </table>
                 </div>
-                <button className='text-black bg-cyan-500 hover:bg-cyan-600 my-2 w-full font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-2'>
+                {/* <button className='text-black bg-cyan-500 hover:bg-cyan-600 my-2 w-full font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-2'>
                   New Inbox
-                </button>
+                </button> */}
               </div>
             </div>
           </DisplayCard>

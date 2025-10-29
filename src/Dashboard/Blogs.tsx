@@ -1,15 +1,7 @@
 import DisplayCard from '@/Components/DisplayCards';
 import DashboardHeader from '../Components/DashboardHeader';
-import BlogForm from '@/Components/BlogForm';
-// import {
-//   Table,
-//   TableBody,
-//   TableCaption,
-//   TableCell,
-//   TableHead,
-//   TableHeader,
-//   TableRow,
-// } from '@/components/ui/table';
+import { Link } from 'react-router';
+
 function Blogs() {
   return (
     <div className='flex flex-col h-full'>
@@ -33,9 +25,11 @@ function Blogs() {
                 <h3 className='font-bold ubuntu-font text-2xl'>
                   Recent Blog Posts
                 </h3>
-                <button className='bg-cyan-600 cursor-pointer text-white px-5 py-1 rounded-2xl text-xs hover:bg-cyan-700 transition'>
-                  New Post
-                </button>
+                <Link to='/dashboard/Blogs/new'>
+                  <button className='bg-cyan-600 cursor-pointer text-white px-5 py-1 rounded-2xl text-xs hover:bg-cyan-700 transition'>
+                    New Post
+                  </button>
+                </Link>
               </div>
               <div>
                 <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
