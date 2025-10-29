@@ -120,7 +120,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
       collapsible='offcanvas'
-      className='shadow-xl shadow-cyan-600 border-r-white'
+      className='shadow-xl shadow-cyan-500 border-r-white'
       {...props}
     >
       <SidebarHeader>

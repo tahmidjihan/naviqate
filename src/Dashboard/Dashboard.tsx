@@ -2,17 +2,7 @@ import DisplayCard from '@/Components/DisplayCards';
 import DashboardHeader from '../Components/DashboardHeader';
 import websiteData from '@/assets/websiteData.json';
 import { DynamicIcon } from 'lucide-react/dynamic';
-import {
-  Bar,
-  BarChart,
-  Line,
-  Tooltip,
-  ComposedChart,
-  XAxis,
-  CartesianGrid,
-  Area,
-  YAxis,
-} from 'recharts';
+import { Bar, Tooltip, ComposedChart, XAxis, CartesianGrid } from 'recharts';
 
 function Dashboard() {
   return (
@@ -98,7 +88,7 @@ function Dashboard() {
           </div>
         </DisplayCard>
         <div className='flex flex-col gap-5 col-span-2'>
-          <DisplayCard className='col-span-2 row-span-2 p-6 bg-gradient-to-br from-slate-50 to-blue-50/30 border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300'>
+          <DisplayCard className='col-span-2 row-span-2 p-6 from-slate-50 to-blue-50/30 border border-slate-200/60 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300'>
             <div className='h-full flex flex-col'>
               {/* Header Section */}
               <div className='flex justify-between items-center mb-6'>

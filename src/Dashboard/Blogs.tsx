@@ -34,7 +34,7 @@ function Blogs() {
               <div>
                 <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
                   <table className='w-full text-sm text-left rtl:text-right text-gray-500 '>
-                    <thead className='text-xs text-gray-200 uppercase bg-cyan-600'>
+                    <thead className='text-xs text-gray-200 uppercase bg-cyan-500'>
                       <tr>
                         <th scope='col' className='px-6 py-3'>
                           Product name
@@ -49,15 +49,21 @@ function Blogs() {
                           Price
                         </th>
                         <th scope='col' className='px-6 py-3'>
+                          <span className='sr-only'>View</span>
+                        </th>
+                        <th scope='col' className='px-6 py-3'>
+                          <span className='sr-only'>Delete</span>
+                        </th>
+                        <th scope='col' className='px-6 py-3'>
                           <span className='sr-only'>Edit</span>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600'>
+                      <tr className='bg-white border-b border-gray-200 hover:bg-gray-50 '>
                         <th
                           scope='row'
-                          className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                          className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap'
                         >
                           Apple MacBook Pro 17"
                         </th>
@@ -67,7 +73,23 @@ function Blogs() {
                         <td className='px-6 py-4 text-right'>
                           <a
                             href='#'
-                            className='font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                            className='font-medium text-cyan-600 hover:underline'
+                          >
+                            Visit
+                          </a>
+                        </td>
+                        <td className='px-6 py-4 text-right'>
+                          <a
+                            href='#'
+                            className='font-medium text-red-600 hover:underline'
+                          >
+                            Delete
+                          </a>
+                        </td>
+                        <td className='px-6 py-4 text-right'>
+                          <a
+                            href='#'
+                            className='font-medium text-cyan-600 hover:underline'
                           >
                             Edit
                           </a>
