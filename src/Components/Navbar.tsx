@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 function Navbar() {
   return (
     <div>
-      <div className='mx-auto my-5 py-4 px-5 container items-center justify-between bg-cyan-50 border border-cyan-200 rounded-2xl w-full flex'>
+      <div className='mx-auto my-5 py-4 px-5 container items-center justify-between bg-rose-50 border border-rose-200 rounded-2xl w-full flex'>
         <div className=''>
           <img src='./Assets/icon.png' className='max-h-10' alt='' />
         </div>
@@ -16,7 +16,7 @@ function Navbar() {
             <li>
               <Link
                 to='/Dashboard'
-                className='p-2 px-5 rounded-2xl text-white bg-cyan-600'
+                className='p-2 px-5 rounded-2xl text-white bg-rose-600'
               >
                 Dashboard
               </Link>

@@ -43,84 +43,106 @@ const BlogForm = () => {
       'fullsize',
     ],
   };
-  // type data = { title: string; content: string, tags: string };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log('Form Data:', formData);
   };
 
   return (
-    <div className='max-w-full p-6 bg-cyan-50 rounded-3xl border border-cyan-200'>
-      <div className=''>
-        <form onSubmit={handleSubmit} className='space-y-6'>
-          {/* Title */}
-          <div>
-            <label className='block text-sm font-medium text-gray-700 mb-2'>
-              Article Title *
-            </label>
-            <input
-              type='text'
-              value={formData.title}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, title: e.target.value }))
-              }
-              className='w-full px-3 py-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 '
-              placeholder='Enter article title'
-              required
-            />
-          </div>
-
-          {/* Tags */}
-
-          <div>
-            <label className='block text-sm font-medium text-gray-700 mb-2'>
-              Tags *
-            </label>
-            <input
-              type='text'
-              value={formData.tags}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, tags: e.target.value }))
-              }
-              className='w-full px-3 py-2 border bg-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500'
-              placeholder='Enter tags separated by commas'
-              required
-            />
-          </div>
-          {/* Jodit Editor */}
-          <div>
-            <label className='block text-sm font-medium text-gray-700 mb-2'>
-              Content *
-            </label>
-            <div className='border border-gray-300 rounded-md overflow-hidden'>
-              <JoditEditor
-                ref={editor}
-                value={formData.content}
-                config={config}
-                onBlur={(newContent) =>
-                  setFormData((prev) => ({ ...prev, content: newContent }))
-                }
-              />
-            </div>
-          </div>
-
-          {/* Form Actions */}
-          <div className='flex gap-3 pt-4 border-t border-gray-200'>
-            <button
-              type='submit'
-              className='px-6 py-1 bg-cyan-600 cursor-pointer text-white font-medium rounded-lg hover:bg-cyan  -70  transition-colors shadow-sm'
-            >
-              Publish Article
-            </button>
-            <button
-              type='button'
-              className='px-6 py-1 bg-gray-500 cursor-pointer text-white font-medium rounded-lg hover:bg-gray-600  transition-colors'
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
+    <div className='max-w-4xl mx-auto p-8 bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl border border-blue-100'>
+      <div className='mb-8 text-center'>
+        <h1 className='text-3xl font-bold text-rose-600 mb-2 ubuntu-font'>
+          Create New Article
+        </h1>
+        <p className='text-gray-600'>Share your knowledge with the world</p>
       </div>
+
+      <form onSubmit={handleSubmit} className='space-y-8'>
+        {/* Title */}
+        <div className='group'>
+          <label className='block text-sm font-semibold text-gray-700 mb-3 transition-all duration-200 group-focus-within:text-rose-600'>
+            Article Title *
+          </label>
+          <input
+            type='text'
+            value={formData.title}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, title: e.target.value }))
+            }
+            className='w-full px-4 py-3 border bg-white border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 hover:border-rose-300 text-lg font-medium'
+            placeholder='Enter a compelling title...'
+            required
+          />
+        </div>
+
+        {/* Tags */}
+        <div className='group'>
+          <label className='block text-sm font-semibold text-gray-700 mb-3 transition-all duration-200 group-focus-within:text-rose-600'>
+            Tags *
+          </label>
+          <input
+            type='text'
+            value={formData.tags}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, tags: e.target.value }))
+            }
+            className='w-full px-4 py-3 border bg-white border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent transition-all duration-200 hover:border-rose-300'
+            placeholder='technology, web-development, react, javascript'
+            required
+          />
+          <p className='text-xs text-gray-500 mt-2'>
+            Separate tags with commas
+          </p>
+        </div>
+
+        {/* Jodit Editor */}
+        <div className='group'>
+          <label className='block text-sm font-semibold text-gray-700 mb-3 transition-all duration-200 group-focus-within:text-rose-600'>
+            Content *
+          </label>
+          <div className='border border-gray-300 rounded-xl overflow-hidden shadow-sm transition-all duration-200 hover:shadow-md group-focus-within:border-rose-500 group-focus-within:ring-2 group-focus-within:ring-rose-500 group-focus-within:ring-opacity-20'>
+            <JoditEditor
+              ref={editor}
+              value={formData.content}
+              config={config}
+              onBlur={(newContent) =>
+                setFormData((prev) => ({ ...prev, content: newContent }))
+              }
+            />
+          </div>
+        </div>
+
+        {/* Form Actions */}
+        <div className='flex gap-4 pt-6 border-t border-gray-200'>
+          <button
+            type='submit'
+            className='px-8 py-3 bg-rose-600 cursor-pointer text-white hover:bg-rose-700 font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2'
+          >
+            <svg
+              className='w-5 h-5'
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d='M13 10V3L4 14h7v7l9-11h-7z'
+              />
+            </svg>
+            Publish Article
+          </button>
+
+          <button
+            type='button'
+            className='px-6 py-3 bg-transparent cursor-pointer text-gray-500 font-medium rounded-xl hover:bg-gray-100 transition-all duration-200 ml-auto'
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

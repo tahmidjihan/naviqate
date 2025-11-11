@@ -15,14 +15,14 @@ function DisplayCard({
     </>
   ),
 }: {
-  className: String;
+  className?: String;
   resetClass?: boolean;
   children?: React.ReactNode;
 }) {
   return (
     <div
       className={`${className} p-5 min-h-[250px] rounded-2xl ${
-        !resetClass && 'border-cyan-200 border bg-cyan-50'
+        !resetClass && 'border-rose-200 border bg-rose-50'
       }`}
     >
       {children}

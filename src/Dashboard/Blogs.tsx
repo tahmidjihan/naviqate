@@ -21,12 +21,12 @@ function Blogs() {
         <div className='flex flex-col gap-5 col-span-1'>
           <DisplayCard className='min-h-screen my-5'>
             <div className='h-full flex flex-col'>
-              <div className='pt-5 pb-2 mb-3 border-b-2 border-cyan-600 flex items-center justify-between'>
+              <div className='pt-5 pb-2 mb-3 border-b-2 border-rose-600 flex items-center justify-between'>
                 <h3 className='font-bold ubuntu-font text-2xl'>
                   Recent Blog Posts
                 </h3>
                 <Link to='/dashboard/Blogs/new'>
-                  <button className='bg-cyan-600 cursor-pointer text-white px-5 py-1 rounded-2xl text-xs hover:bg-cyan-700 transition'>
+                  <button className='bg-rose-600 cursor-pointer text-white px-5 py-1 rounded-2xl text-xs hover:bg-rose-700 transition'>
                     New Post
                   </button>
                 </Link>
@@ -34,7 +34,7 @@ function Blogs() {
               <div>
                 <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
                   <table className='w-full text-sm text-left rtl:text-right text-gray-500 '>
-                    <thead className='text-xs text-gray-200 uppercase bg-cyan-500'>
+                    <thead className='text-xs text-gray-200 uppercase bg-rose-500'>
                       <tr>
                         <th scope='col' className='px-6 py-3'>
                           Product name
@@ -73,7 +73,7 @@ function Blogs() {
                         <td className='px-6 py-4 text-right'>
                           <a
                             href='#'
-                            className='font-medium text-cyan-600 hover:underline'
+                            className='font-medium text-rose-600 hover:underline'
                           >
                             Visit
                           </a>
@@ -89,7 +89,7 @@ function Blogs() {
                         <td className='px-6 py-4 text-right'>
                           <a
                             href='#'
-                            className='font-medium text-cyan-600 hover:underline'
+                            className='font-medium text-rose-600 hover:underline'
                           >
                             Edit
                           </a>
@@ -98,7 +98,7 @@ function Blogs() {
                     </tbody>
                   </table>
                 </div>
-                <span className='text-cyan-600 cursor-pointer py-3 block mt-5'>
+                <span className='text-rose-600 cursor-pointer py-3 block mt-5'>
                   Read all blog posts
                 </span>
               </div>

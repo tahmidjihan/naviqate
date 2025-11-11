@@ -1,11 +1,7 @@
-import iconBeside from '@/assets/naviqate-icon-beside.png';
+import iconBeside from '@/assets/Teacupnet-icon-beside.png';
 function Logo({ className }: { className?: string }) {
   return (
-    <img
-      src={iconBeside}
-      alt='Naviqate'
-      className={`rounded-3xl ${className} bg-white`}
-    />
+    <img src={iconBeside} alt='Naviqate' className={`${className} bg-white`} />
   );
 }
 

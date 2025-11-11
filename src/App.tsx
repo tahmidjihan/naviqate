@@ -9,7 +9,7 @@ function App() {
           <Navbar />
           <div className='min-h-[70vh] flex flex-col items-center justify-center'>
             <div className='flex flex-col gap-6 max-w-4xl text-center px-4'>
-              <span className='bg-cyan-100 rounded-3xl'>
+              <span className='bg-rose-100 rounded-3xl'>
                 Try Naviqate for free for the first time.
               </span>
               <h1 className='text-6xl ubuntu-font '>
@@ -22,10 +22,10 @@ function App() {
                 harum nemo accusantium itaque.
               </p>
               <div className='flex gap-2 items-center justify-center'>
-                <button className='bg-cyan-600 cursor-pointer text-white px-6 py-3 rounded-2xl text-lg hover:bg-cyan-700 transition'>
+                <button className='bg-rose-600 cursor-pointer text-white px-6 py-3 rounded-2xl text-lg hover:bg-rose-700 transition'>
                   Get Started
                 </button>
-                <button className='border-cyan-600 border-3 cursor-pointer text-cyan-600 px-6 py-3 rounded-2xl text-lg hover:bg-gray-200 transition'>
+                <button className='border-rose-600 border-3 cursor-pointer text-rose-600 px-6 py-3 rounded-2xl text-lg hover:bg-gray-200 transition'>
                   Demo
                 </button>
               </div>
