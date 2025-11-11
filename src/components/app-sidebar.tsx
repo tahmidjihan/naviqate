@@ -1,19 +1,13 @@
 import {
   Calendar,
-  ChevronUp,
   Inbox,
   Search,
   Settings,
-  User2,
-  Camera,
   BarChart3,
   LayoutDashboard,
-  Database,
-  FileText,
   Folder,
   HelpCircle,
   List,
-  PieChart,
   Users,
 } from 'lucide-react';
 import {
@@ -24,19 +18,11 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+
 import { Link, useLocation } from 'react-router';
 import Logo from '@/Components/logo';
-import { NavDocuments } from '@/components/nav-documents';
+// import { NavDocuments } from '@/components/nav-documents';
 import { NavMain } from '@/components/nav-main';
 import { NavSecondary } from '@/components/nav-secondary';
 

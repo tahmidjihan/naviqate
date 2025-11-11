@@ -7,11 +7,14 @@ import Settings from './Dashboard/Settings';
 import Inbox from './Dashboard/Inbox';
 import Naviq from './Dashboard/Naviq';
 import NewBlog from './Dashboard/NewBlog';
+import AuthPage from './Dashboard/Auth';
 
 function Router() {
   return (
     <Routes>
       <Route path='/' element={<App />} />
+      <Route path='/login' element={<AuthPage isLogin />} />
+      <Route path='/signup' element={<AuthPage isLogin={false} />} />
       <Route path='/Dashboard' element={<Layout />}>
         <Route path='/Dashboard' element={<Dashboard />} />
         <Route path='/Dashboard/Inbox' element={<Inbox />} />
